@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 88 88">
+  <defs>
+    <clipPath id="clip-Prancheta_3">
+      <rect width="88" height="88"/>
+    </clipPath>
+  </defs>
+  <g id="Prancheta_3" data-name="Prancheta – 3" clip-path="url(#clip-Prancheta_3)">
+    <g id="noun_emoji_3861738" transform="translate(2.3 2.2)">
+      <g id="Grupo_18" data-name="Grupo 18" transform="translate(2.7 2.8)">
+        <path id="Caminho_5" data-name="Caminho 5" d="M41.559,2.8A38.859,38.859,0,1,0,80.417,41.659,38.785,38.785,0,0,0,41.559,2.8Zm0,71.032A32.633,32.633,0,0,1,8.968,41.241,32.278,32.278,0,0,1,41.559,9.068,32.633,32.633,0,0,1,74.15,41.659,32.278,32.278,0,0,1,41.559,73.832Z" transform="translate(-2.7 -2.8)" fill="#bdbdbd"/>
+        <circle id="Elipse_2" data-name="Elipse 2" cx="5.432" cy="5.432" r="5.432" transform="translate(20.892 23.817)" fill="#bdbdbd"/>
+        <circle id="Elipse_3" data-name="Elipse 3" cx="5.432" cy="5.432" r="5.432" transform="translate(45.962 23.817)" fill="#bdbdbd"/>
+        <path id="Caminho_6" data-name="Caminho 6" d="M36.074,15.915a15.888,15.888,0,0,1-22.563,0,3.25,3.25,0,0,0-4.6,4.6A22.831,22.831,0,0,0,24.793,27.2a21.82,21.82,0,0,0,15.878-6.685,3.25,3.25,0,1,0-4.6-4.6Z" transform="translate(14.066 35.896)" fill="#bdbdbd"/>
+      </g>
+    </g>
+  </g>
+</svg>

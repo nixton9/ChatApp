@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 84">
+  <defs>
+    <clipPath id="clip-Prancheta_2">
+      <rect width="100" height="84"/>
+    </clipPath>
+  </defs>
+  <g id="Prancheta_2" data-name="Prancheta – 2" clip-path="url(#clip-Prancheta_2)">
+    <g id="noun_Camera_3838280" transform="translate(2 -6)">
+      <path id="Caminho_2" data-name="Caminho 2" d="M48.933,34.3A18.533,18.533,0,1,0,67.467,52.833,18.563,18.563,0,0,0,48.933,34.3Z" transform="translate(-1.382 -1.105)" fill="#bdbdbd"/>
+      <path id="Caminho_3" data-name="Caminho 3" d="M79.8,21.376H67.6A11.771,11.771,0,0,0,56.818,14H38.379A11.533,11.533,0,0,0,27.6,21.376H15.307A10.331,10.331,0,0,0,5,31.682v40a10.412,10.412,0,0,0,10.307,10.4H79.7a10.432,10.432,0,0,0,10.4-10.4v-40A10.331,10.331,0,0,0,79.8,21.376Zm-32.244,53.8A23.45,23.45,0,1,1,71,51.729,23.446,23.446,0,0,1,47.551,75.179Z" transform="translate(0 0)" fill="#bdbdbd"/>
+    </g>
+  </g>
+</svg>
