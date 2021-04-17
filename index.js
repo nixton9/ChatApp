@@ -19,7 +19,7 @@ const io = socketIO(server)
 
 const PORT = 5000
 
-app.use(cors)
+app.use(cors())
 app.use(router)
 
 if (process.env.NODE_ENV === 'production') {
