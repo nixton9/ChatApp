@@ -21,6 +21,14 @@ const PORT = 5000
 app.use(cors)
 app.use(router)
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client', 'build')))
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  })
+}
+
 io.on('connect', socket => {
   socket.on('join', ({ name, color, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, color, room })
