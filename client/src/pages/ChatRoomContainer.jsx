@@ -17,7 +17,7 @@ const ChatRoomContainer = ({
   const [adminMessage, setAdminMessage] = useState('')
   const [showSettings, setShowSettings] = useState(false)
 
-  const ENDPOINT = 'https://chat-app3870.herokuapp.com:5000/'
+  const ENDPOINT = '/'
 
   const { id } = useParams()
 
