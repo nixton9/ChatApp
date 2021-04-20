@@ -16,24 +16,24 @@ const TextAreaContainer = styled.div`
 const TextArea = styled.textarea`
   width: 100%;
   padding: 2rem 6rem 0.5rem 7rem;
-  color: ${({ theme }) => theme.grey1};
+  color: ${({ theme }) => theme.text3};
   resize: none;
   border: none;
   font-weight: ${({ theme }) => theme.fontSemiBold};
   line-height: 1.9rem;
 
   ::placeholder {
-    color: ${({ theme }) => theme.grey3};
+    color: ${({ theme }) => theme.text3};
     font-weight: ${({ theme }) => theme.fontSemiBold};
   }
 
   :-ms-input-placeholder {
-    color: ${({ theme }) => theme.grey3};
+    color: ${({ theme }) => theme.text3};
     font-weight: ${({ theme }) => theme.fontSemiBold};
   }
 
   ::-ms-input-placeholder {
-    color: ${({ theme }) => theme.grey4};
+    color: ${({ theme }) => theme.text4};
     font-weight: ${({ theme }) => theme.fontSemiBold};
   }
 `
@@ -59,8 +59,8 @@ const ImageContainer = styled.div`
     justify-content: center;
     font-size: 1.5rem;
     font-weight: 600;
-    color: ${({ theme }) => theme.grey1};
-    background-color: ${({ theme }) => theme.grey5};
+    color: ${({ theme }) => theme.text1};
+    background-color: ${({ theme }) => theme.text5};
     transform: rotate(45deg);
     border-radius: 50%;
     opacity: 0;

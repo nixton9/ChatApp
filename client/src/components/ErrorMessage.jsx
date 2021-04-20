@@ -8,7 +8,7 @@ const Container = styled.div`
   justify-content: center;
 
   p {
-    color: ${({ theme }) => theme.grey1};
+    color: ${({ theme }) => theme.text1};
     font-size: 1.4rem;
     font-weight: ${({ theme }) => theme.fontMedium};
     margin-left: ${({ theme }) => theme.spacingXXS};

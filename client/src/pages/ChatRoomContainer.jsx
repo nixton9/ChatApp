@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { ChatRoom } from '../components/ChatRoom'
+import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { getCurrentHour } from '../utils/helpers'
 import { useParams } from 'react-router-dom'
 import io from 'socket.io-client'
@@ -12,13 +13,15 @@ const ChatRoomContainer = ({
   usercolor,
   setUsercolor
 }) => {
-  const [messages, setMessages] = useState([])
-  const [users, setUsers] = useState([])
-  const [adminMessage, setAdminMessage] = useState('')
-  const [showSettings, setShowSettings] = useState(false)
+  const {
+    setRoomID,
+    setMessages,
+    setUsers,
+    adminMessage,
+    setAdminMessage
+  } = useContext(ChatRoomContext)
 
   const ENDPOINT = '/'
-
   const { id } = useParams()
 
   const sendMessage = (msg, isImage = false) =>
@@ -40,24 +43,14 @@ const ChatRoomContainer = ({
 
   useEffect(() => {
     socket = io(ENDPOINT)
+    if (id) {
+      setRoomID(id)
+    }
     if (username && id) {
       connectUser(false, username, usercolor)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ENDPOINT, id])
-
-  useEffect(() => {
-    const messagesDiv = document.querySelector('.messages')
-
-    const vh = Math.max(
-      document.documentElement.clientHeight || 0,
-      window.innerHeight || 0
-    )
-    const gap = 290
-
-    if (messagesDiv) {
-      messagesDiv.style.height = `${vh - messagesDiv.offsetTop - gap}px`
-    }
-  })
 
   useEffect(() => {
     socket.on('message', message => {
@@ -71,27 +64,36 @@ const ChatRoomContainer = ({
     socket.on('roomData', ({ users }) => {
       setUsers(users)
     })
-  }, [])
+  }, [setUsers, setAdminMessage, setMessages])
 
   useEffect(() => {
     if (adminMessage) {
       setTimeout(() => setAdminMessage(''), 3000)
     }
-  }, [adminMessage])
+  }, [adminMessage, setAdminMessage])
+
+  useEffect(() => {
+    const messagesDiv = document.querySelector('.messages')
+
+    const vh = Math.max(
+      document.documentElement.clientHeight || 0,
+      window.innerHeight || 0
+    )
+    const gap = 260
+
+    if (messagesDiv) {
+      messagesDiv.style.height = `${vh - messagesDiv.offsetTop - gap}px`
+    }
+  })
 
   return (
     <ChatRoom
       username={username}
       usercolor={usercolor}
-      users={users}
-      messages={messages}
-      sendMessage={sendMessage}
-      adminMessage={adminMessage}
-      showSettings={showSettings}
-      connectUser={connectUser}
       setUsername={setUsername}
       setUsercolor={setUsercolor}
-      setShowSettings={setShowSettings}
+      sendMessage={sendMessage}
+      connectUser={connectUser}
     />
   )
 }

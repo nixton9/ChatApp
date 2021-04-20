@@ -20,7 +20,7 @@ const ModalContainer = styled.div`
   right: 0;
   margin: 0 auto;
   transform: translateY(-50%);
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.clearerBackground};
   padding: ${({ theme }) => theme.spacingS};
   border-radius: ${({ theme }) => theme.mainBorderRadius};
   box-shadow: ${({ theme }) => theme.bigBoxShadow};
@@ -28,7 +28,7 @@ const ModalContainer = styled.div`
 `
 
 const ModalTitle = styled.h2`
-  color: ${({ theme }) => theme.black};
+  color: ${({ theme }) => theme.title};
   font-size: 3.5rem;
   font-weight: ${({ theme }) => theme.fontBold};
 `
@@ -62,7 +62,7 @@ const InputWrapper = styled.div`
 `
 
 const ModalLabel = styled.label`
-  color: ${({ theme }) => theme.grey1};
+  color: ${({ theme }) => theme.text1};
   font-size: 1.3rem;
   font-weight: ${({ theme }) => theme.fontSemiBold};
   display: block;
@@ -71,8 +71,8 @@ const ModalLabel = styled.label`
 const ModalInput = styled.input`
   width: 100%;
   height: 5rem;
-  color: ${({ theme }) => theme.grey1};
-  background: ${({ theme }) => theme.grey5};
+  color: ${({ theme }) => theme.text1};
+  background: ${({ theme }) => theme.text5};
   font-weight: ${({ theme }) => theme.fontMediumw};
   padding: ${({ theme }) => theme.spacingXS};
   margin-top: ${({ theme }) => theme.spacingXXS};
@@ -80,15 +80,15 @@ const ModalInput = styled.input`
   border: none;
 
   ::placeholder {
-    color: ${({ theme }) => theme.grey2};
+    color: ${({ theme }) => theme.text2};
   }
 
   :-ms-input-placeholder {
-    color: ${({ theme }) => theme.grey2};
+    color: ${({ theme }) => theme.text2};
   }
 
   ::-ms-input-placeholder {
-    color: ${({ theme }) => theme.grey2};
+    color: ${({ theme }) => theme.text2};
   }
 `
 

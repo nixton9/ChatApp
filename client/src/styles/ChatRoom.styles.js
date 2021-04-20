@@ -12,11 +12,42 @@ const Wrapper = styled.div`
 
 const Header = styled.header`
   padding: ${({ theme }) => theme.spacingS};
-  border-bottom: 1px solid ${({ theme }) => theme.grey5};
 
-  h1 {
-    font-size: 1.4rem;
-    text-align: center;
+  h2 {
+    font-size: 2.4rem;
+    font-weight: ${({ theme }) => theme.fontBold};
+    color: ${({ theme }) => theme.title};
+    display: inline-block;
+    cursor: pointer;
+
+    span {
+      font-size: 1rem;
+      font-weight: ${({ theme }) => theme.fontMedium};
+      margin-left: ${({ theme }) => theme.spacingXS};
+      opacity: 0;
+      transition: opacity 0.1s ease;
+    }
+
+    &:hover span {
+      opacity: 1;
+    }
+  }
+
+  .users {
+    display: flex;
+    align-items: center;
+    margin-top: ${({ theme }) => theme.spacingXS};
+
+    .avatar:not(:first-child) {
+      margin-left: -7px;
+    }
+  }
+
+  .users-list {
+    color: ${({ theme }) => theme.text1};
+    font-size: 1rem;
+    font-weight: ${({ theme }) => theme.fontMedium};
+    margin: 0.5rem 0 0 0.5rem;
   }
 
   .user {
@@ -28,6 +59,13 @@ const Header = styled.header`
       cursor: pointer;
     }
   }
+
+  textarea {
+    position: absolute;
+    top: -999px;
+    left: -999px;
+    opacity: 0;
+  }
 `
 
 const Content = styled.div`
@@ -35,24 +73,6 @@ const Content = styled.div`
   width: 100%;
   padding: ${({ theme }) => theme.spacingS};
   overflow-y: auto;
-
-  .users {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .avatar:not(:first-child) {
-      margin-left: -7px;
-    }
-  }
-
-  .users-list {
-    color: ${({ theme }) => theme.grey1};
-    font-size: 1rem;
-    font-weight: ${({ theme }) => theme.fontMedium};
-    margin: 0.5rem 0 0 0.5rem;
-    text-align: center;
-  }
 
   .messages {
     margin-top: ${({ theme }) => theme.spacingXS};

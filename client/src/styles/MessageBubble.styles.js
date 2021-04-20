@@ -19,7 +19,7 @@ const Message = styled.div`
   font-size: 1.2rem;
   line-height: 2.2rem;
   font-weight: ${({ theme }) => theme.fontMedium};
-  color: ${({ theme }) => theme.grey2};
+  color: ${({ theme }) => theme.text1};
   padding: 2rem;
   border-radius: ${({ theme }) => theme.bigBorderRadius};
   border-bottom-right-radius: ${props =>
@@ -27,7 +27,7 @@ const Message = styled.div`
   border-bottom-left-radius: ${props =>
     props.isFromOwnUser ? props.theme.bigBorderRadius : 0};
   background-color: ${props =>
-    props.isFromOwnUser ? props.theme.grey5 : props.theme.white};
+    props.isFromOwnUser ? props.theme.text5 : props.theme.text2};
 
   &:hover {
     .timestamp {
@@ -43,7 +43,7 @@ const Message = styled.div`
 `
 
 const TimeStamp = styled.span`
-  color: ${({ theme }) => theme.grey1};
+  color: ${({ theme }) => theme.text1};
   position: absolute;
   bottom: -2.5rem;
   right: ${props => (props.isFromOwnUser ? 0 : 'unset')};

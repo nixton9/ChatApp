@@ -23,7 +23,7 @@ export const MessageBubble = ({
         {isImage ? (
           <img
             src={`data:image/jpg;base64,${msg}`}
-            alt={`Image sent by ${user.name}`}
+            alt={`Sent by ${user.name}`}
             width="80px"
           />
         ) : (

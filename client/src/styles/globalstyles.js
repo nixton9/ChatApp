@@ -47,7 +47,7 @@ export const GlobalStyle = createGlobalStyle`
 
     .emoji-mart {
         position: fixed;
-        bottom: 11rem;
+        bottom: 12rem;
         border: none;
         box-shadow: ${({ theme }) => theme.mainBoxShadow};
         z-index: 11;

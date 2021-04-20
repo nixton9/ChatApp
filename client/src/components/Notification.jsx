@@ -16,8 +16,8 @@ const NotificationContainer = styled.div`
   top: 11rem;
   left: 50%;
   padding: ${({ theme }) => theme.spacingXS};
-  color: ${({ theme }) => theme.grey1};
-  background-color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.clearerBackground};
   border-radius: ${({ theme }) => theme.mainBorderRadius};
   box-shadow: ${({ theme }) => theme.mainBoxShadow};
   font-size: 1.4rem;

@@ -10,7 +10,8 @@ const {
   removeUser,
   getUser,
   getUsersInRoom,
-  updateUser
+  updateUser,
+  checkIfRoomExists
 } = require('./userActions')
 
 const app = express()

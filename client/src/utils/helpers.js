@@ -27,3 +27,7 @@ export const parseFileName = file => {
   }
   return file
 }
+
+export const generateRandomString = () =>
+  Math.random().toString(36).substring(2, 5) +
+  Math.random().toString(36).substring(2, 5)

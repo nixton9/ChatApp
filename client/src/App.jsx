@@ -2,7 +2,8 @@ import React from 'react'
 import Home from './pages/Home'
 import ChatRoomContainer from './pages/ChatRoomContainer'
 import { useLocalStorage } from './utils/useLocalStorage'
-import { theme } from './styles/theme'
+import { ChatRoomProvider } from './utils/ChatRoomContext'
+import { darkTheme } from './styles/theme'
 import { GlobalStyle } from './styles/globalstyles'
 import { ThemeProvider } from 'styled-components'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -13,19 +14,21 @@ const App = () => {
 
   return (
     <Router>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={darkTheme}>
         <GlobalStyle />
         <Switch>
           <Route
             path="/room/:id"
             render={props => (
-              <ChatRoomContainer
-                {...props}
-                username={username}
-                setUsername={setUsername}
-                usercolor={usercolor}
-                setUsercolor={setUsercolor}
-              />
+              <ChatRoomProvider>
+                <ChatRoomContainer
+                  {...props}
+                  username={username}
+                  setUsername={setUsername}
+                  usercolor={usercolor}
+                  setUsercolor={setUsercolor}
+                />
+              </ChatRoomProvider>
             )}
           />
           <Route path="/">

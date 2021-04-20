@@ -1,73 +1,38 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { RoomHeader } from '../components/RoomHeader'
 import { SignupModal } from '../components/SignupModal'
-import { UserAvatar } from '../components/UserAvatar'
 import { MessageInput } from '../components/MessageInput'
 import { MessageBubble } from '../components/MessageBubble'
 import { Notification } from '../components/Notification'
-import { getUsersNamesString } from '../utils/helpers'
+import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { Styled } from '../styles/ChatRoom.styles'
-import { v4 as uuidv4 } from 'uuid'
 import ScrollToBottom from 'react-scroll-to-bottom'
 
 export const ChatRoom = ({
   username,
   usercolor,
-  users,
-  messages,
-  sendMessage,
-  adminMessage,
-  connectUser,
-  showSettings,
   setUsername,
   setUsercolor,
-  setShowSettings
+  sendMessage,
+  connectUser
 }) => {
+  const { messages, adminMessage, showSettings, setShowSettings } = useContext(
+    ChatRoomContext
+  )
+
   return (
     <Styled.Wrapper>
-      <Styled.Header>
-        <h1>ChatApp</h1>
-        {username && (
-          <div className="user">
-            <UserAvatar
-              name={username}
-              color={usercolor}
-              onClick={() => setShowSettings(true)}
-            />
-          </div>
-        )}
-      </Styled.Header>
+      <RoomHeader username={username} usercolor={usercolor} />
 
       <Styled.Content>
         {username ? (
           <>
             {adminMessage && <Notification text={adminMessage} />}
 
-            {users && users.length ? (
-              <>
-                <div className="users">
-                  {users.map(user => (
-                    <UserAvatar
-                      key={user.id}
-                      name={user.name}
-                      color={user.color}
-                      size={'xs'}
-                    />
-                  ))}
-                </div>
-                <p className="users-list">{getUsersNamesString(users)}</p>
-              </>
-            ) : (
-              <>
-                <div className="users">
-                  <UserAvatar size={'xs'} />
-                </div>
-                <p className="users-list">No users on this room</p>
-              </>
-            )}
             <ScrollToBottom className="messages">
               {messages.map(message => (
                 <MessageBubble
-                  key={uuidv4()}
+                  key={`${message.text}-${message.timestamp}`}
                   msg={message.text}
                   isFromOwnUser={
                     username.trim().toLowerCase() ===

@@ -17,7 +17,7 @@ const Button = styled.button`
 `
 
 export const MainButton = ({ children, onClick, ...props }) => (
-  <Button onClick={onClick} {...props}>
+  <Button onClick={onClick} className="main-btn" {...props}>
     {children}
   </Button>
 )

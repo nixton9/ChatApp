@@ -51,4 +51,13 @@ const getUser = id => users.find(user => user.id === id)
 
 const getUsersInRoom = room => users.filter(user => user.room === room)
 
-module.exports = { addUser, updateUser, removeUser, getUser, getUsersInRoom }
+const checkIfRoomExists = room => users.some(user => user.room === room)
+
+module.exports = {
+  addUser,
+  updateUser,
+  removeUser,
+  getUser,
+  getUsersInRoom,
+  checkIfRoomExists
+}
