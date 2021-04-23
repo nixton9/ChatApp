@@ -1,21 +1,24 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
-import { UserAvatar } from '../components/UserAvatar'
+import { UserAvatar } from './UserAvatar'
+import { ConfirmationModal } from './ConfirmationModal'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { getUsersNamesString } from '../utils/helpers'
 import { Styled } from '../styles/ChatRoom.styles'
+import { ReactComponent as HomeIcon } from '../assets/icons/home.svg'
+import { useHistory } from 'react-router-dom'
 
 export const RoomHeader = ({ username, usercolor }) => {
   const [roomURL, setRoomURL] = useState('')
+  const [showConfirmModal, setShowConfirmModal] = useState(false)
   const { roomID, users, setShowSettings, setAdminMessage } = useContext(
     ChatRoomContext
   )
   const textAreaRef = useRef(null)
+  const history = useHistory()
 
   const copyRoomUrl = e => {
     textAreaRef.current.select()
     document.execCommand('copy')
-    // This is just personal preference.
-    // I prefer to not show the whole text area selected.
     e.target.focus()
     setAdminMessage('Room link copied!')
   }
@@ -28,10 +31,10 @@ export const RoomHeader = ({ username, usercolor }) => {
 
   return (
     <Styled.Header>
-      <h2 onClick={copyRoomUrl}>
+      <Styled.RoomTitle onClick={copyRoomUrl}>
         Room {roomID}
         <span>Copy URL</span>
-      </h2>
+      </Styled.RoomTitle>
 
       {users && users.length ? (
         <>
@@ -56,14 +59,27 @@ export const RoomHeader = ({ username, usercolor }) => {
         </>
       )}
 
-      {username && (
-        <div className="user">
-          <UserAvatar
-            name={username}
-            color={usercolor}
-            onClick={() => setShowSettings(true)}
-          />
-        </div>
+      <div onClick={() => setShowConfirmModal(true)} className="home-icon">
+        <HomeIcon />
+      </div>
+
+      <div className="user">
+        <UserAvatar
+          name={username}
+          color={usercolor}
+          onClick={() => setShowSettings(true)}
+        />
+      </div>
+
+      {showConfirmModal && (
+        <ConfirmationModal
+          title="Leave chat?"
+          onSubmit={() => history.push('/')}
+          closeModal={() => setShowConfirmModal(false)}
+        >
+          Leaving this chat room will cause you to lose all the messages that
+          were sent here. Sure you want to leave?
+        </ConfirmationModal>
       )}
 
       {roomURL && <textarea ref={textAreaRef} value={roomURL} readOnly />}

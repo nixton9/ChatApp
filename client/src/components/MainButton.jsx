@@ -2,11 +2,11 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 const Button = styled.button`
-  min-width: 14rem;
+  min-width: ${props => (props.small ? '10rem' : '14rem')};
   font-size: 1.2rem;
   font-weight: ${({ theme }) => theme.fontBold};
   color: ${({ theme }) => theme.white};
-  background: ${({ theme }) => theme.accent};
+  background: ${props => (props.ghost ? 'transparent' : props.theme.accent)};
   padding: ${({ theme }) => theme.spacingXS};
   border-radius: ${({ theme }) => theme.roundedBorderRadius};
   cursor: pointer;
@@ -16,8 +16,14 @@ const Button = styled.button`
   }
 `
 
-export const MainButton = ({ children, onClick, ...props }) => (
-  <Button onClick={onClick} className="main-btn" {...props}>
+export const MainButton = ({ children, onClick, ghost, small, ...props }) => (
+  <Button
+    onClick={onClick}
+    className="main-btn"
+    ghost={ghost}
+    small={small}
+    {...props}
+  >
     {children}
   </Button>
 )

@@ -79,6 +79,13 @@ io.on('connect', socket => {
     callback()
   })
 
+  socket.on('roomExists', ({ room }, callback) => {
+    if (checkIfRoomExists(room)) {
+      return callback()
+    }
+    return callback({ error: "This room doesn't exist." })
+  })
+
   socket.on('disconnect', () => {
     const user = removeUser(socket.id)
 

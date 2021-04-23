@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { EmojiPicker } from './EmojiPicker'
-import { ReactComponent as SendIcon } from '../assets/icons/send.svg'
+import { SendButton } from './SendButton'
 import { ReactComponent as CameraIcon } from '../assets/icons/camera.svg'
 import { ReactComponent as EmojiIcon } from '../assets/icons/emoji.svg'
 import { Styled } from '../styles/MessageInput.styles'
@@ -68,9 +68,7 @@ export const MessageInput = ({ sendMessage }) => {
           />
         )}
         {message || selectedFile ? (
-          <Styled.Button>
-            <SendIcon />
-          </Styled.Button>
+          <SendButton />
         ) : (
           <Styled.ImageInputContainer>
             <label>

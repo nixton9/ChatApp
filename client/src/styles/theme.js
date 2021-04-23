@@ -7,7 +7,7 @@ export const theme = {
   spacingL: '9rem',
   accent: '#F1D300',
   white: '#FFFFFF',
-  fontLight: 300,
+  fontRegular: 400,
   fontMedium: 500,
   fontSemiBold: 600,
   fontBold: 700,

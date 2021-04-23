@@ -11,6 +11,7 @@ export const Container = styled.section`
 `
 
 export const Content = styled.div`
+  position: relative;
   text-align: center;
   transform: translateY(-5rem);
 
@@ -18,17 +19,8 @@ export const Content = styled.div`
     width: 30rem;
   }
 
-  p {
-    color: ${({ theme }) => theme.text1};
-    font-size: 1.8rem;
-    line-height: 3rem;
-    font-weight: ${({ theme }) => theme.fontLight};
-    max-width: 35rem;
-    margin: 0 auto;
-    margin-top: ${({ theme }) => theme.spacingXS};
-  }
-
   .buttons {
+    min-height: 13rem;
     margin-top: ${({ theme }) => theme.spacingL};
 
     .main-btn {
@@ -36,11 +28,36 @@ export const Content = styled.div`
       font-size: 1.6rem;
     }
   }
+
+  .error {
+    position: absolute;
+    bottom: -5rem;
+    left: 0;
+    right: 0;
+
+    svg {
+      width: 2.5rem;
+    }
+  }
+`
+
+export const Slogan = styled.p`
+  color: ${({ theme }) => theme.text1};
+  font-size: 1.8rem;
+  line-height: 3rem;
+  font-weight: ${({ theme }) => theme.fontRegular};
+  max-width: 35rem;
+  margin: 0 auto;
+  margin-top: ${({ theme }) => theme.spacingXS};
 `
 
 export const InputContainer = styled.form`
-  position: relative;
   margin-top: ${({ theme }) => theme.spacingS};
+
+  .wrapper {
+    position: relative;
+    display: inline-block;
+  }
 
   input {
     min-width: 25rem;
@@ -63,10 +80,19 @@ export const InputContainer = styled.form`
       color: ${({ theme }) => theme.background};
     }
   }
+
+  .send-btn {
+    padding: 0.5rem;
+
+    svg {
+      width: 2rem;
+    }
+  }
 `
 
 export const Styled = {
   Container,
   Content,
+  Slogan,
   InputContainer
 }

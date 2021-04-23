@@ -35,7 +35,7 @@ const ModalTitle = styled.h2`
 
 const ModalContent = styled.div`
   position: relative;
-  min-height: 25rem;
+  min-height: ${props => (props.setMinHeight ? '25rem' : 'unset')};
 
   .loading-spinner {
     position: absolute;
@@ -58,7 +58,9 @@ const ModalForm = styled.form`
 `
 
 const InputWrapper = styled.div`
-  margin-top: ${({ theme }) => theme.spacingS};
+  &:not(:first-child) {
+    margin-top: ${({ theme }) => theme.spacingS};
+  }
 `
 
 const ModalLabel = styled.label`
@@ -73,7 +75,7 @@ const ModalInput = styled.input`
   height: 5rem;
   color: ${({ theme }) => theme.text1};
   background: ${({ theme }) => theme.text5};
-  font-weight: ${({ theme }) => theme.fontMediumw};
+  font-weight: ${({ theme }) => theme.fontMedium};
   padding: ${({ theme }) => theme.spacingXS};
   margin-top: ${({ theme }) => theme.spacingXXS};
   border-radius: ${({ theme }) => theme.mainBorderRadius};
@@ -92,9 +94,23 @@ const ModalInput = styled.input`
   }
 `
 
-const ButtonContainer = styled.div`
-  text-align: center;
+const ModalText = styled.p`
+  font-size: 1.5rem;
+  line-height: 3rem;
+  font-weight: ${({ theme }) => theme.fontRegular};
+  color: ${({ theme }) => theme.text1};
+  margin-top: ${({ theme }) => theme.spacingS};
+`
+
+const ButtonsContainer = styled.div`
   margin-top: ${({ theme }) => theme.spacingM};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    margin: 0 0.5rem;
+  }
 `
 
 export const Styled = {
@@ -106,5 +122,6 @@ export const Styled = {
   InputWrapper,
   ModalLabel,
   ModalInput,
-  ButtonContainer
+  ModalText,
+  ButtonsContainer
 }

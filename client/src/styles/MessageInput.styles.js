@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro'
-import { fadeIn } from './animations'
 
 const TextAreaContainer = styled.div`
   position: fixed;
@@ -107,28 +106,11 @@ const ImageInputContainer = styled.div`
   }
 `
 
-const Button = styled.button`
-  position: absolute;
-  top: 50%;
-  right: 1.3rem;
-  transform: translateY(-53%);
-  background: ${({ theme }) => theme.accent};
-  padding: 0.75rem;
-  border-radius: ${({ theme }) => theme.mainBorderRadius};
-  cursor: pointer;
-  animation: ${fadeIn} 0.3s ease forwards;
-
-  svg {
-    width: 2.5rem;
-  }
-`
-
 export const Styled = {
   TextAreaContainer,
   TextArea,
   ImageContainer,
   Image,
   IconButton,
-  ImageInputContainer,
-  Button
+  ImageInputContainer
 }

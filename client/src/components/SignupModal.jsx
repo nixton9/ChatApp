@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Modal } from './Modal'
 import { MainButton } from './MainButton'
 import { ColorSelect } from './ColorSelect'
 import { LoadingSpinner } from './LoadingSpinner'
@@ -59,48 +60,38 @@ export const SignupModal = ({
   }, [error])
 
   return (
-    <>
-      <Styled.ModalOverlay onClick={closeModal} />
-      <Styled.ModalContainer>
-        {closeModal ? (
-          <Styled.ModalTitle>Your settings</Styled.ModalTitle>
-        ) : (
-          <Styled.ModalTitle>
-            Ready to start
-            <br />
-            chatting?
-          </Styled.ModalTitle>
-        )}
-        <Styled.ModalContent>
-          {isLoading ? (
-            <LoadingSpinner />
-          ) : error ? (
-            <ErrorMessage error={error} />
-          ) : (
-            <Styled.ModalForm onSubmit={handleSubmit}>
-              <Styled.InputWrapper>
-                <Styled.ModalLabel>Nickname</Styled.ModalLabel>
-                <Styled.ModalInput
-                  type="text"
-                  placeholder="Name that others will see"
-                  value={name}
-                  onChange={e => setName(e.target.value)}
-                />
-              </Styled.InputWrapper>
-              <Styled.InputWrapper>
-                <Styled.ModalLabel>Color</Styled.ModalLabel>
-                <ColorSelect color={color} setColor={setColor} />
-              </Styled.InputWrapper>
+    <Modal
+      title={closeModal ? 'Your settings' : 'Ready to start <br /> chatting?'}
+      closeModal={closeModal}
+      setMinHeight
+    >
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : error ? (
+        <ErrorMessage error={error} />
+      ) : (
+        <Styled.ModalForm onSubmit={handleSubmit}>
+          <Styled.InputWrapper>
+            <Styled.ModalLabel>Nickname</Styled.ModalLabel>
+            <Styled.ModalInput
+              type="text"
+              placeholder="Name that others will see"
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </Styled.InputWrapper>
+          <Styled.InputWrapper>
+            <Styled.ModalLabel>Color</Styled.ModalLabel>
+            <ColorSelect color={color} setColor={setColor} />
+          </Styled.InputWrapper>
 
-              <Styled.ButtonContainer>
-                <MainButton disabled={!name}>
-                  {closeModal ? 'Save settings' : 'Enter chat'}
-                </MainButton>
-              </Styled.ButtonContainer>
-            </Styled.ModalForm>
-          )}
-        </Styled.ModalContent>
-      </Styled.ModalContainer>
-    </>
+          <Styled.ButtonsContainer>
+            <MainButton disabled={!name}>
+              {closeModal ? 'Save settings' : 'Enter chat'}
+            </MainButton>
+          </Styled.ButtonsContainer>
+        </Styled.ModalForm>
+      )}
+    </Modal>
   )
 }

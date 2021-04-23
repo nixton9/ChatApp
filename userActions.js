@@ -51,7 +51,8 @@ const getUser = id => users.find(user => user.id === id)
 
 const getUsersInRoom = room => users.filter(user => user.room === room)
 
-const checkIfRoomExists = room => users.some(user => user.room === room)
+const checkIfRoomExists = room =>
+  users.some(user => user.room.toLowerCase() === room.toLowerCase())
 
 module.exports = {
   addUser,

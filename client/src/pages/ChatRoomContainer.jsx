@@ -3,11 +3,9 @@ import { ChatRoom } from '../components/ChatRoom'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { getCurrentHour } from '../utils/helpers'
 import { useParams } from 'react-router-dom'
-import io from 'socket.io-client'
-
-let socket
 
 const ChatRoomContainer = ({
+  socket,
   username,
   setUsername,
   usercolor,
@@ -21,7 +19,6 @@ const ChatRoomContainer = ({
     setAdminMessage
   } = useContext(ChatRoomContext)
 
-  const ENDPOINT = '/'
   const { id } = useParams()
 
   const sendMessage = (msg, isImage = false) =>
@@ -29,7 +26,6 @@ const ChatRoomContainer = ({
 
   const connectUser = (isUpdate, name, color) => {
     const type = isUpdate ? 'update' : 'join'
-
     return new Promise((resolve, reject) => {
       socket.emit(type, { name: name, color: color, room: id }, err => {
         if (err) {
@@ -42,29 +38,30 @@ const ChatRoomContainer = ({
   }
 
   useEffect(() => {
-    socket = io(ENDPOINT)
     if (id) {
       setRoomID(id)
     }
-    if (username && id) {
+    if (socket && username && id) {
       connectUser(false, username, usercolor)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ENDPOINT, id])
+  }, [id, socket])
 
   useEffect(() => {
-    socket.on('message', message => {
-      if (message.isAdmin) {
-        setAdminMessage(message.text)
-      } else {
-        setMessages(messages => [...messages, message])
-      }
-    })
+    if (socket) {
+      socket.on('message', message => {
+        if (message.isAdmin) {
+          setAdminMessage(message.text)
+        } else {
+          setMessages(messages => [...messages, message])
+        }
+      })
 
-    socket.on('roomData', ({ users }) => {
-      setUsers(users)
-    })
-  }, [setUsers, setAdminMessage, setMessages])
+      socket.on('roomData', ({ users }) => {
+        setUsers(users)
+      })
+    }
+  }, [socket, setUsers, setAdminMessage, setMessages])
 
   useEffect(() => {
     if (adminMessage) {

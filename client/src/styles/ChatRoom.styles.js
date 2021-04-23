@@ -13,26 +13,6 @@ const Wrapper = styled.div`
 const Header = styled.header`
   padding: ${({ theme }) => theme.spacingS};
 
-  h2 {
-    font-size: 2.4rem;
-    font-weight: ${({ theme }) => theme.fontBold};
-    color: ${({ theme }) => theme.title};
-    display: inline-block;
-    cursor: pointer;
-
-    span {
-      font-size: 1rem;
-      font-weight: ${({ theme }) => theme.fontMedium};
-      margin-left: ${({ theme }) => theme.spacingXS};
-      opacity: 0;
-      transition: opacity 0.1s ease;
-    }
-
-    &:hover span {
-      opacity: 1;
-    }
-  }
-
   .users {
     display: flex;
     align-items: center;
@@ -52,11 +32,23 @@ const Header = styled.header`
 
   .user {
     position: absolute;
-    top: 1.5rem;
-    right: 2rem;
+    top: 2.5rem;
+    right: 3rem;
 
     .avatar {
       cursor: pointer;
+    }
+  }
+
+  .home-icon {
+    position: absolute;
+    top: 2.5rem;
+    right: 8rem;
+    padding: 1rem;
+    cursor: pointer;
+
+    svg {
+      width: 2rem;
     }
   }
 
@@ -65,6 +57,26 @@ const Header = styled.header`
     top: -999px;
     left: -999px;
     opacity: 0;
+  }
+`
+
+const RoomTitle = styled.h2`
+  font-size: 2.4rem;
+  font-weight: ${({ theme }) => theme.fontBold};
+  color: ${({ theme }) => theme.title};
+  display: inline-block;
+  cursor: pointer;
+
+  span {
+    font-size: 1rem;
+    font-weight: ${({ theme }) => theme.fontMedium};
+    margin-left: ${({ theme }) => theme.spacingXS};
+    opacity: 0;
+    transition: opacity 0.1s ease;
+  }
+
+  &:hover span {
+    opacity: 1;
   }
 `
 
@@ -82,5 +94,6 @@ const Content = styled.div`
 export const Styled = {
   Wrapper,
   Header,
+  RoomTitle,
   Content
 }
