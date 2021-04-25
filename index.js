@@ -16,7 +16,9 @@ const {
 
 const app = express()
 const server = http.createServer(app)
-const io = socketIO(server)
+const io = socketIO(server, {
+  maxHttpBufferSize: 1e8
+})
 
 const PORT = 5000
 
