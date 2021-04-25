@@ -23,8 +23,10 @@ const ChatRoomContainer = ({
 
   const { id } = useParams()
 
-  const sendMessage = (msg, isImage = false) =>
+  const sendMessage = (msg, isImage = false) => {
+    console.log('msg', msg)
     socket.emit('sendMessage', msg, getCurrentHour(), isImage, () => null)
+  }
 
   const connectUser = (isUpdate, name, color) => {
     const type = isUpdate ? 'update' : 'join'
