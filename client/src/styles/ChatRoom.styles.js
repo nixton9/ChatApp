@@ -83,12 +83,7 @@ const RoomTitle = styled.h2`
 const Content = styled.div`
   position: relative;
   width: 100%;
-  padding: ${({ theme }) => theme.spacingS};
-  overflow-y: auto;
-
-  .messages {
-    margin-top: ${({ theme }) => theme.spacingXS};
-  }
+  padding: 0 0.5rem;
 `
 
 export const Styled = {

@@ -56,4 +56,24 @@ export const GlobalStyle = createGlobalStyle`
     .emoji-mart-preview {
         display: none;
     }
+
+
+    /* SCROLLBAR */
+
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: ${({ theme }) => theme.clearerBackground};
+        border-radius: 8px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: ${({ theme }) => theme.text2};
+    }
     `

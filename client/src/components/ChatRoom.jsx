@@ -20,7 +20,7 @@ export const ChatRoom = ({
   const { messages, adminMessage, showSettings, setShowSettings } = useContext(
     ChatRoomContext
   )
-  console.log(messages)
+
   return (
     <Styled.Wrapper>
       <RoomHeader username={username} usercolor={usercolor} />

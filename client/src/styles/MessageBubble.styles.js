@@ -6,6 +6,7 @@ const MessageContainer = styled.div`
   align-items: flex-end;
   justify-content: ${props =>
     props.isFromOwnUser ? 'flex-end' : 'flex-start'};
+  padding: 0 ${({ theme }) => theme.spacingXS};
   margin-bottom: ${({ theme }) => theme.spacingS};
 
   .avatar {
