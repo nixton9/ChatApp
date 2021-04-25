@@ -27,6 +27,7 @@ const LightboxContainer = styled.div`
   img {
     width: 100%;
     max-height: 90vh;
+    object-fit: cover;
     border-radius: ${({ theme }) => theme.mainBorderRadius};
     box-shadow: ${({ theme }) => theme.bigBoxShadow};
   }

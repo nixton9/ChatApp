@@ -36,7 +36,7 @@ io.on('connect', socket => {
   socket.on('join', ({ name, color, room }, callback) => {
     const { error, user } = addUser({ id: socket.id, name, color, room })
 
-    if (error) return callback(error)
+    if (error) return callback({ error })
 
     socket.join(user.room)
 
@@ -51,19 +51,19 @@ io.on('connect', socket => {
       users: getUsersInRoom(user.room)
     })
 
-    callback()
+    callback({ id: socket.id })
   })
 
   socket.on('update', ({ name, color, room }, callback) => {
     const { error, user } = updateUser({ id: socket.id, name, color, room })
-    if (error) return callback(error)
+    if (error) return callback({ error })
 
     io.to(user.room).emit('roomData', {
       room: user.room,
       users: getUsersInRoom(user.room)
     })
 
-    callback()
+    callback({})
   })
 
   socket.on('sendMessage', (message, timestamp, isImage, callback) => {

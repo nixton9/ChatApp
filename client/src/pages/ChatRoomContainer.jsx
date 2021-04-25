@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom'
 
 const ChatRoomContainer = ({
   socket,
+  userID,
+  setUserID,
   username,
   setUsername,
   usercolor,
@@ -27,11 +29,11 @@ const ChatRoomContainer = ({
   const connectUser = (isUpdate, name, color) => {
     const type = isUpdate ? 'update' : 'join'
     return new Promise((resolve, reject) => {
-      socket.emit(type, { name: name, color: color, room: id }, err => {
-        if (err) {
-          reject({ err })
+      socket.emit(type, { name: name, color: color, room: id }, res => {
+        if (res.error) {
+          reject({ err: res.error })
         } else {
-          resolve()
+          resolve({ id: res.id })
         }
       })
     })
@@ -42,7 +44,7 @@ const ChatRoomContainer = ({
       setRoomID(id)
     }
     if (socket && username && id) {
-      connectUser(false, username, usercolor)
+      connectUser(false, username, usercolor).then(res => setUserID(res.id))
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, socket])
@@ -85,6 +87,7 @@ const ChatRoomContainer = ({
 
   return (
     <ChatRoom
+      userID={userID}
       username={username}
       usercolor={usercolor}
       setUsername={setUsername}

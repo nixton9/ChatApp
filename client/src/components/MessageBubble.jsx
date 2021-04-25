@@ -32,7 +32,6 @@ export const MessageBubble = ({
               <img
                 src={`data:image/jpg;base64,${msg}`}
                 alt={`Sent by ${user.name}`}
-                width="80px"
               />
               <GlassIcon />
             </Styled.ImageWrapper>

@@ -67,6 +67,7 @@ const ImageWrapper = styled.div`
   img {
     max-width: 100%;
     width: 30rem;
+    height: 100%;
     border-radius: ${({ theme }) => theme.mainBorderRadius};
   }
 

@@ -12,6 +12,7 @@ const ENDPOINT = '/'
 
 const App = () => {
   const [socket, setSocket] = useState(null)
+  const [userID, setUserID] = useLocalStorage('userID', '')
   const [username, setUsername] = useLocalStorage('username', '')
   const [usercolor, setUsercolor] = useLocalStorage('usercolor', 'yellow')
 
@@ -30,6 +31,8 @@ const App = () => {
               <ChatRoomProvider>
                 <ChatRoomContainer
                   socket={socket}
+                  userID={userID}
+                  setUserID={setUserID}
                   username={username}
                   setUsername={setUsername}
                   usercolor={usercolor}

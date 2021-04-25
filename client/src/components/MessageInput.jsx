@@ -73,7 +73,12 @@ export const MessageInput = ({ sendMessage }) => {
           <Styled.ImageInputContainer>
             <label>
               <CameraIcon />
-              <input type="file" id="image-file" onChange={handleImageChange} />
+              <input
+                type="file"
+                id="image-file"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
             </label>
           </Styled.ImageInputContainer>
         )}

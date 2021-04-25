@@ -9,6 +9,7 @@ import { Styled } from '../styles/ChatRoom.styles'
 import ScrollToBottom from 'react-scroll-to-bottom'
 
 export const ChatRoom = ({
+  userID,
   username,
   usercolor,
   setUsername,
@@ -19,7 +20,7 @@ export const ChatRoom = ({
   const { messages, adminMessage, showSettings, setShowSettings } = useContext(
     ChatRoomContext
   )
-
+  console.log(messages)
   return (
     <Styled.Wrapper>
       <RoomHeader username={username} usercolor={usercolor} />
@@ -32,12 +33,9 @@ export const ChatRoom = ({
             <ScrollToBottom className="messages">
               {messages.map(message => (
                 <MessageBubble
-                  key={`${message.text}-${message.timestamp}`}
+                  key={`${message.user}-${message.text}-${message.timestamp}`}
                   msg={message.text}
-                  isFromOwnUser={
-                    username.trim().toLowerCase() ===
-                    message.user.name.trim().toLowerCase()
-                  }
+                  isFromOwnUser={userID === message.user.id}
                   user={message.user}
                   timestamp={message.timestamp}
                   isImage={message.isImage}
