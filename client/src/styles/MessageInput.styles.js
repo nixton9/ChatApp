@@ -2,10 +2,10 @@ import styled from 'styled-components/macro'
 
 const TextAreaContainer = styled.div`
   position: fixed;
+  min-height: 7.3rem;
   bottom: ${({ theme }) => theme.spacingS};
   right: ${({ theme }) => theme.spacingS};
   left: ${({ theme }) => theme.spacingS};
-  min-height: 7rem;
   background: ${({ theme }) => theme.white};
   padding: 0.5rem;
   border-radius: ${({ theme }) => theme.bigBorderRadius};
@@ -14,12 +14,14 @@ const TextAreaContainer = styled.div`
 
 const TextArea = styled.textarea`
   width: 100%;
-  padding: 2rem 6rem 0.5rem 7rem;
-  color: ${({ theme }) => theme.text3};
+  height: 6rem;
+  padding: 2rem 6rem 2rem 7rem;
+  color: ${({ theme }) => theme.clearerBackground};
   resize: none;
   border: none;
   font-weight: ${({ theme }) => theme.fontSemiBold};
-  line-height: 1.9rem;
+  line-height: 2rem;
+  border-radius: ${({ theme }) => theme.mainBorderRadius};
 
   ::placeholder {
     color: ${({ theme }) => theme.text3};

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 90 84">
+  <defs>
+    <clipPath id="clip-Prancheta_11">
+      <rect width="90" height="84"/>
+    </clipPath>
+  </defs>
+  <g id="Prancheta_11" data-name="Prancheta – 11" clip-path="url(#clip-Prancheta_11)">
+    <g id="noun_Magnifying_Glass_6983" data-name="noun_Magnifying Glass_6983" transform="translate(4.642 1.291)">
+      <g id="Grupo_40" data-name="Grupo 40" transform="translate(48.574 48.175)">
+        <path id="Caminho_13" data-name="Caminho 13" d="M67.292,59.058,89.159,78.012a4.791,4.791,0,0,1,.481,6.738l-.781.9a4.791,4.791,0,0,1-6.738.481l-21.7-18.811" transform="translate(-60.418 -59.058)" fill="#fff"/>
+      </g>
+      <path id="Caminho_14" data-name="Caminho 14" d="M2.358,34.165A28.457,28.457,0,1,1,30.816,62.624,28.456,28.456,0,0,1,2.358,34.165Zm28.819,20.8a20.8,20.8,0,1,0-20.8-20.8A20.8,20.8,0,0,0,31.177,54.961Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

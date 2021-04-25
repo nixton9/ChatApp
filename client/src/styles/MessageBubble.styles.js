@@ -34,11 +34,51 @@ const Message = styled.div`
       display: block;
     }
   }
+`
+
+const ImageWrapper = styled.div`
+  position: relative;
+  display: inline-flex;
+  max-width: 95%;
+  cursor: pointer;
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: ${({ theme }) => theme.mainBorderRadius};
+    z-index: 11;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover  {
+    &:before {
+      opacity: 1;
+    }
+
+    svg {
+      opacity: 1;
+    }
+  }
 
   img {
-    max-width: 90%;
+    max-width: 100%;
     width: 30rem;
     border-radius: ${({ theme }) => theme.mainBorderRadius};
+  }
+
+  svg {
+    width: 4rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 `
 
@@ -55,5 +95,6 @@ const TimeStamp = styled.span`
 export const Styled = {
   MessageContainer,
   Message,
+  ImageWrapper,
   TimeStamp
 }
