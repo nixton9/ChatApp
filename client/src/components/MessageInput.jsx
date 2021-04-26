@@ -44,7 +44,10 @@ export const MessageInput = ({ sendMessage }) => {
   return (
     <Styled.TextAreaContainer>
       <form onSubmit={handleSubmit}>
-        <Styled.IconButton onClick={() => setShowEmojiPicker(true)}>
+        <Styled.IconButton
+          type="button"
+          onClick={() => setShowEmojiPicker(true)}
+        >
           <EmojiIcon />
         </Styled.IconButton>
         {selectedFile ? (

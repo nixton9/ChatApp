@@ -84,11 +84,41 @@ const Content = styled.div`
   position: relative;
   width: 100%;
   padding: 0 0.5rem;
+
+  .loading-spinner {
+    position: absolute;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    transform: scale(0.5);
+  }
+`
+const InvalidMessage = styled.div`
+  position: absolute;
+  width: 85%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  p {
+    font-size: 2rem;
+    font-weight: ${({ theme }) => theme.fontMedium};
+    color: ${({ theme }) => theme.white};
+
+    a {
+      text-decoration: none;
+      color: ${({ theme }) => theme.accent};
+      font-weight: ${({ theme }) => theme.fontSemiBold};
+    }
+  }
 `
 
 export const Styled = {
   Wrapper,
   Header,
   RoomTitle,
-  Content
+  Content,
+  InvalidMessage
 }

@@ -1,12 +1,14 @@
 import React, { useContext } from 'react'
-import { RoomHeader } from '../components/RoomHeader'
-import { SignupModal } from '../components/SignupModal'
-import { MessageInput } from '../components/MessageInput'
-import { MessageBubble } from '../components/MessageBubble'
-import { Notification } from '../components/Notification'
+import { RoomHeader } from './RoomHeader'
+import { SignupModal } from './SignupModal'
+import { MessageInput } from './MessageInput'
+import { MessageBubble } from './MessageBubble'
+import { Notification } from './Notification'
+import { LoadingSpinner } from './LoadingSpinner'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { Styled } from '../styles/ChatRoom.styles'
 import ScrollToBottom from 'react-scroll-to-bottom'
+import { Link } from 'react-router-dom'
 
 export const ChatRoom = ({
   userID,
@@ -15,54 +17,74 @@ export const ChatRoom = ({
   setUsername,
   setUsercolor,
   sendMessage,
-  connectUser
+  connectUser,
+  isLoading
 }) => {
-  const { messages, adminMessage, showSettings, setShowSettings } = useContext(
-    ChatRoomContext
-  )
+  const {
+    roomID,
+    messages,
+    adminMessage,
+    showSettings,
+    setShowSettings
+  } = useContext(ChatRoomContext)
 
   return (
     <Styled.Wrapper>
-      <RoomHeader username={username} usercolor={usercolor} />
+      {roomID && roomID.length === 6 ? (
+        <>
+          <RoomHeader username={username} usercolor={usercolor} />
 
-      <Styled.Content>
-        {username ? (
-          <>
-            {adminMessage && <Notification text={adminMessage} />}
+          <Styled.Content>
+            {username ? (
+              <>
+                {adminMessage && <Notification text={adminMessage} />}
 
-            <ScrollToBottom className="messages">
-              {messages.map(message => (
-                <MessageBubble
-                  key={`${message.user}-${message.text}-${message.timestamp}`}
-                  msg={message.text}
-                  isFromOwnUser={userID === message.user.id}
-                  user={message.user}
-                  timestamp={message.timestamp}
-                  isImage={message.isImage}
-                />
-              ))}
-            </ScrollToBottom>
-            <MessageInput sendMessage={sendMessage} />
-            {showSettings && (
+                <ScrollToBottom className="messages">
+                  {messages.map(message => (
+                    <MessageBubble
+                      key={message.id}
+                      msg={message.text}
+                      isFromOwnUser={userID === message.user.id}
+                      user={message.user}
+                      timestamp={message.timestamp}
+                      isImage={message.isImage}
+                    />
+                  ))}
+                </ScrollToBottom>
+
+                {isLoading && <LoadingSpinner />}
+
+                <MessageInput sendMessage={sendMessage} />
+
+                {showSettings && (
+                  <SignupModal
+                    username={username}
+                    setUsername={setUsername}
+                    usercolor={usercolor}
+                    setUsercolor={setUsercolor}
+                    onSubmit={(name, color) => connectUser(true, name, color)}
+                    closeModal={() => setShowSettings(false)}
+                  />
+                )}
+              </>
+            ) : (
               <SignupModal
-                username={username}
                 setUsername={setUsername}
-                usercolor={usercolor}
                 setUsercolor={setUsercolor}
-                onSubmit={(name, color) => connectUser(true, name, color)}
-                closeModal={() => setShowSettings(false)}
+                usercolor={usercolor}
+                onSubmit={(name, color) => connectUser(false, name, color)}
               />
             )}
-          </>
-        ) : (
-          <SignupModal
-            setUsername={setUsername}
-            setUsercolor={setUsercolor}
-            usercolor={usercolor}
-            onSubmit={(name, color) => connectUser(false, name, color)}
-          />
-        )}
-      </Styled.Content>
+          </Styled.Content>
+        </>
+      ) : (
+        <Styled.InvalidMessage>
+          <p>
+            This is not a valid room. Click <Link to="/">here</Link> to be
+            redirect to the Home page.
+          </p>
+        </Styled.InvalidMessage>
+      )}
     </Styled.Wrapper>
   )
 }

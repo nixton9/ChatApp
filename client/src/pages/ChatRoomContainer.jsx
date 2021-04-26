@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { ChatRoom } from '../components/ChatRoom'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { getCurrentHour } from '../utils/helpers'
@@ -21,10 +21,17 @@ const ChatRoomContainer = ({
     setAdminMessage
   } = useContext(ChatRoomContext)
 
+  const [isLoading, setIsLoading] = useState(false)
   const { id } = useParams()
 
-  const sendMessage = (msg, isImage = false) =>
-    socket.emit('sendMessage', msg, getCurrentHour(), isImage, () => null)
+  const sendMessage = (msg, isImage = false) => {
+    if (isImage) {
+      setIsLoading(true)
+    }
+    socket.emit('sendMessage', msg, getCurrentHour(), isImage, () =>
+      setIsLoading(false)
+    )
+  }
 
   const connectUser = (isUpdate, name, color) => {
     const type = isUpdate ? 'update' : 'join'
@@ -55,6 +62,7 @@ const ChatRoomContainer = ({
         if (message.isAdmin) {
           setAdminMessage(message.text)
         } else {
+          message.id = `${new Date().getTime()}${new Date().getMilliseconds()}`
           setMessages(messages => [...messages, message])
         }
       })
@@ -94,6 +102,7 @@ const ChatRoomContainer = ({
       setUsercolor={setUsercolor}
       sendMessage={sendMessage}
       connectUser={connectUser}
+      isLoading={isLoading}
     />
   )
 }
