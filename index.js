@@ -17,7 +17,9 @@ const {
 const app = express()
 const server = http.createServer(app)
 const io = socketIO(server, {
-  maxHttpBufferSize: 1e8
+  maxHttpBufferSize: 1e8,
+  pingInterval: 25000,
+  pingTimeout: 60000
 })
 
 const PORT = 5000
@@ -70,7 +72,8 @@ io.on('connect', socket => {
 
   socket.on('sendMessage', (message, timestamp, isImage, callback) => {
     const user = getUser(socket.id)
-
+    console.log('user', user)
+    console.log('socketID', socket.id)
     io.to(user.room).emit('message', {
       user,
       text: message,
@@ -88,9 +91,9 @@ io.on('connect', socket => {
     return callback({ error: "This room doesn't exist." })
   })
 
-  socket.on('disconnect', () => {
+  socket.on('disconnect', reason => {
     const user = removeUser(socket.id)
-
+    console.log('reason', reason)
     if (user) {
       io.to(user.room).emit('message', {
         user: 'admin',
