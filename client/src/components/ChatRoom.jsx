@@ -79,6 +79,7 @@ export const ChatRoom = ({
         </>
       ) : (
         <Styled.InvalidMessage>
+          <h2>Got lost?</h2>
           <p>
             This is not a valid room. Click <Link to="/">here</Link> to be
             redirect to the Home page.

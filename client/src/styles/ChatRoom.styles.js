@@ -102,15 +102,22 @@ const InvalidMessage = styled.div`
   transform: translate(-50%, -50%);
   text-align: center;
 
+  h2 {
+    font-size: 3.5rem;
+    font-weight: ${({ theme }) => theme.fontBold};
+    color: ${({ theme }) => theme.white};
+  }
+
   p {
     font-size: 2rem;
-    font-weight: ${({ theme }) => theme.fontMedium};
-    color: ${({ theme }) => theme.white};
+    line-height: 3.4rem;
+    color: ${({ theme }) => theme.text1};
+    margin-top: ${({ theme }) => theme.spacingS};
 
     a {
       text-decoration: none;
       color: ${({ theme }) => theme.accent};
-      font-weight: ${({ theme }) => theme.fontSemiBold};
+      font-weight: ${({ theme }) => theme.fontMedium};
     }
   }
 `

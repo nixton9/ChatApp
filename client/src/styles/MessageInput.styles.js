@@ -1,27 +1,39 @@
 import styled from 'styled-components/macro'
+import { device } from './theme'
 
 const TextAreaContainer = styled.div`
+  min-height: 5.3rem;
   position: fixed;
-  min-height: 7.3rem;
-  bottom: ${({ theme }) => theme.spacingS};
-  right: ${({ theme }) => theme.spacingS};
-  left: ${({ theme }) => theme.spacingS};
+  bottom: ${({ theme }) => theme.spacingXS};
+  right: ${({ theme }) => theme.spacingXS};
+  left: ${({ theme }) => theme.spacingXS};
   background: ${({ theme }) => theme.white};
   padding: 0.5rem;
   border-radius: ${({ theme }) => theme.bigBorderRadius};
   box-shadow: ${({ theme }) => theme.mainBoxShadow};
+
+  @media ${device.mobileL} {
+    .send-btn svg {
+      width: 2.1rem;
+    }
+  }
 `
 
 const TextArea = styled.textarea`
   width: 100%;
-  height: 6rem;
-  padding: 2rem 6rem 2rem 7rem;
+  height: 5rem;
+  padding: 1.5rem 6rem 1.5rem 7rem;
   color: ${({ theme }) => theme.clearerBackground};
   resize: none;
   border: none;
   font-weight: ${({ theme }) => theme.fontSemiBold};
   line-height: 2rem;
   border-radius: ${({ theme }) => theme.mainBorderRadius};
+
+  @media ${device.mobileL} {
+    height: 4rem;
+    padding: 1.2rem 6rem 0 7rem;
+  }
 
   ::placeholder {
     color: ${({ theme }) => theme.text3};
@@ -71,13 +83,14 @@ const ImageContainer = styled.div`
 `
 
 const Image = styled.img`
-  width: 5rem;
+  width: 4.5rem;
   max-width: 100%;
   border-radius: 4px;
 `
 
 const IconButton = styled.button`
   position: absolute;
+  display: flex;
   top: 50%;
   left: 2rem;
   transform: translateY(-50%);

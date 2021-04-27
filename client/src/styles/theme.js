@@ -53,3 +53,33 @@ export const darkTheme = {
   text4: '#BDBDBD',
   text5: '#606060'
 }
+
+const size = {
+  mobileXS: '320px',
+  mobileS: '380px',
+  mobile: '430px',
+  mobileL: '550px',
+  tabletXS: '700px',
+  tablet: '1000px',
+  tabletXL: '1200px',
+  laptop: '1500px',
+  laptopL: '1792px',
+  desktop: '1920px',
+  desktopL: '2200px',
+  desktopXL: '2560px'
+}
+
+export const device = {
+  mobileXS: `(max-width: ${size.mobileXS})`,
+  mobileS: `(max-width: ${size.mobileS})`,
+  mobile: `(max-width: ${size.mobile})`,
+  mobileL: `(max-width: ${size.mobileL})`,
+  tabletXS: `(max-width: ${size.tabletXS})`,
+  tablet: `(max-width: ${size.tablet})`,
+  tabletXL: `(max-width: ${size.tabletXL})`,
+  laptop: `(max-width: ${size.laptop})`,
+  laptopL: `(max-width: ${size.laptopL})`,
+  desktop: `(max-width: ${size.desktop})`,
+  desktopL: `(max-width: ${size.desktopL})`,
+  desktopXL: `(max-width: ${size.desktopXL})`
+}
