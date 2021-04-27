@@ -17,9 +17,7 @@ const {
 const app = express()
 const server = http.createServer(app)
 const io = socketIO(server, {
-  maxHttpBufferSize: 1e8,
-  pingInterval: 25000,
-  pingTimeout: 60000
+  maxHttpBufferSize: 1e8
 })
 
 const PORT = 5000
