@@ -70,8 +70,6 @@ io.on('connect', socket => {
 
   socket.on('sendMessage', (message, timestamp, isImage, callback) => {
     const user = getUser(socket.id)
-    console.log('user', user)
-    console.log('socketID', socket.id)
     io.to(user.room).emit('message', {
       user,
       text: message,
@@ -91,7 +89,6 @@ io.on('connect', socket => {
 
   socket.on('disconnect', reason => {
     const user = removeUser(socket.id)
-    console.log('reason', reason)
     if (user) {
       io.to(user.room).emit('message', {
         user: 'admin',
