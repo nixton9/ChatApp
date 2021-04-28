@@ -35,6 +35,10 @@ const TextArea = styled.textarea`
     padding: 1.2rem 6rem 0 7rem;
   }
 
+  @media ${device.mobileS} {
+    padding: 1.2rem 5rem 0 5.5rem;
+  }
+
   ::placeholder {
     color: ${({ theme }) => theme.text3};
     font-weight: ${({ theme }) => theme.fontSemiBold};
@@ -85,6 +89,8 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   width: 4.5rem;
   max-width: 100%;
+  max-height: 4.5rem;
+  object-fit: cover;
   border-radius: 4px;
 `
 

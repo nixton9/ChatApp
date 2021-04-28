@@ -17,17 +17,15 @@ const LightboxContainer = styled.div`
   position: fixed;
   max-width: 90%;
   top: 50%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  text-align: center;
-  transform: translateY(-50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 11;
 
   img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
     max-height: 90vh;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: ${({ theme }) => theme.mainBorderRadius};
     box-shadow: ${({ theme }) => theme.bigBoxShadow};
   }

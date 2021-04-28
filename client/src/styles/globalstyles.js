@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { device } from './theme'
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -16,6 +17,22 @@ export const GlobalStyle = createGlobalStyle`
     html {
         font-size: 62.5%;
         scroll-behavior: smooth;
+
+        @media ${device.mobileL} {
+            font-size: 60.5%;
+        }
+
+        @media ${device.mobile} {
+            font-size: 59%;
+        }
+
+        @media ${device.mobileS} {
+            font-size: 57%;
+        }
+
+        @media ${device.mobileXS} {
+            font-size: 53%;
+        }
     }
 
     body {

@@ -53,6 +53,10 @@ const ChatRoomContainer = ({
     if (socket && username && id) {
       connectUser(false, username, usercolor).then(res => setUserID(res.id))
     }
+    if (socket && socket.disconnected) {
+      console.log('DISCONNECTED', socket)
+    }
+    console.log('socket', socket)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, socket])
 
