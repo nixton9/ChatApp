@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { ChatRoom } from '../components/ChatRoom'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { getCurrentHour } from '../utils/helpers'
@@ -18,10 +18,11 @@ const ChatRoomContainer = ({
     setMessages,
     setUsers,
     adminMessage,
-    setAdminMessage
+    setAdminMessage,
+    setIsLoading,
+    setShowIsDisconnected
   } = useContext(ChatRoomContext)
 
-  const [isLoading, setIsLoading] = useState(false)
   const { id } = useParams()
 
   const sendMessage = (msg, isImage = false) => {
@@ -53,10 +54,6 @@ const ChatRoomContainer = ({
     if (socket && username && id) {
       connectUser(false, username, usercolor).then(res => setUserID(res.id))
     }
-    if (socket && socket.disconnected) {
-      console.log('DISCONNECTED', socket)
-    }
-    console.log('socket', socket)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, socket])
 
@@ -71,11 +68,13 @@ const ChatRoomContainer = ({
         }
       })
 
+      socket.on('disconnect', () => setShowIsDisconnected(true))
+
       socket.on('roomData', ({ users }) => {
         setUsers(users)
       })
     }
-  }, [socket, setUsers, setAdminMessage, setMessages])
+  }, [socket, setUsers, setAdminMessage, setMessages, setShowIsDisconnected])
 
   useEffect(() => {
     if (adminMessage) {
@@ -106,7 +105,6 @@ const ChatRoomContainer = ({
       setUsercolor={setUsercolor}
       sendMessage={sendMessage}
       connectUser={connectUser}
-      isLoading={isLoading}
     />
   )
 }

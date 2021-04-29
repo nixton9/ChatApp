@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import { UserAvatar } from './UserAvatar'
-import { ConfirmationModal } from './ConfirmationModal'
+import { GenericModal } from './GenericModal'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { getUsersNamesString } from '../utils/helpers'
 import { Styled } from '../styles/ChatRoom.styles'
@@ -72,14 +72,25 @@ export const RoomHeader = ({ username, usercolor }) => {
       </div>
 
       {showConfirmModal && (
-        <ConfirmationModal
+        <GenericModal
           title="Leave chat?"
-          onSubmit={() => history.push('/')}
           closeModal={() => setShowConfirmModal(false)}
+          buttons={[
+            {
+              text: 'Yes',
+              onClick: () => history.push('/'),
+              props: { small: true }
+            },
+            {
+              text: 'Cancel',
+              onClick: () => setShowConfirmModal(false),
+              props: { small: true, ghost: true }
+            }
+          ]}
         >
           Leaving this chat room will cause you to lose all the messages that
           were sent here. Sure you want to leave?
-        </ConfirmationModal>
+        </GenericModal>
       )}
 
       {roomURL && <textarea ref={textAreaRef} value={roomURL} readOnly />}

@@ -4,11 +4,12 @@ import { SignupModal } from './SignupModal'
 import { MessageInput } from './MessageInput'
 import { MessageBubble } from './MessageBubble'
 import { Notification } from './Notification'
+import { GenericModal } from './GenericModal'
 import { LoadingSpinner } from './LoadingSpinner'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { Styled } from '../styles/ChatRoom.styles'
 import ScrollToBottom from 'react-scroll-to-bottom'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 export const ChatRoom = ({
   userID,
@@ -17,16 +18,20 @@ export const ChatRoom = ({
   setUsername,
   setUsercolor,
   sendMessage,
-  connectUser,
-  isLoading
+  connectUser
 }) => {
   const {
     roomID,
     messages,
     adminMessage,
     showSettings,
-    setShowSettings
+    setShowSettings,
+    isLoading,
+    showIsDisconnected,
+    setShowIsDisconnected
   } = useContext(ChatRoomContext)
+
+  const history = useHistory()
 
   return (
     <Styled.Wrapper>
@@ -76,6 +81,23 @@ export const ChatRoom = ({
               />
             )}
           </Styled.Content>
+
+          {showIsDisconnected && (
+            <GenericModal
+              title="Connection lost"
+              closeModal={() => setShowIsDisconnected(false)}
+              buttons={[
+                {
+                  text: 'Reload',
+                  onClick: () => history.go(0),
+                  props: { small: true }
+                }
+              ]}
+            >
+              Seems like you're disconnected from the server so all the chat
+              functionalities won't work. Reload the page on the button below.
+            </GenericModal>
+          )}
         </>
       ) : (
         <Styled.InvalidMessage>

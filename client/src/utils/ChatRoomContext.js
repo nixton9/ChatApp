@@ -8,6 +8,8 @@ export const ChatRoomProvider = ({ children }) => {
   const [users, setUsers] = useState([])
   const [adminMessage, setAdminMessage] = useState('')
   const [showSettings, setShowSettings] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [showIsDisconnected, setShowIsDisconnected] = useState(false)
 
   const contextProps = {
     roomID,
@@ -19,7 +21,11 @@ export const ChatRoomProvider = ({ children }) => {
     adminMessage,
     setAdminMessage,
     showSettings,
-    setShowSettings
+    setShowSettings,
+    isLoading,
+    setIsLoading,
+    showIsDisconnected,
+    setShowIsDisconnected
   }
 
   return (
