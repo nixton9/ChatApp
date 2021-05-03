@@ -36,9 +36,14 @@ if (process.env.NODE_ENV === 'production') {
 
 io.on('connect', socket => {
   socket.on('join', ({ name, color, room }, callback) => {
-    const { error, user } = addUser({ id: socket.id, name, color, room })
+    const { error, errorCode, user } = addUser({
+      id: socket.id,
+      name,
+      color,
+      room
+    })
 
-    if (error) return callback({ error })
+    if (error) return callback({ error, errorCode })
 
     socket.join(user.room)
 
@@ -57,8 +62,13 @@ io.on('connect', socket => {
   })
 
   socket.on('update', ({ name, color, room }, callback) => {
-    const { error, user } = updateUser({ id: socket.id, name, color, room })
-    if (error) return callback({ error })
+    const { error, errorCode, user } = updateUser({
+      id: socket.id,
+      name,
+      color,
+      room
+    })
+    if (error) return callback({ error, errorCode })
 
     io.to(user.room).emit('roomData', {
       room: user.room,
@@ -84,7 +94,7 @@ io.on('connect', socket => {
     if (checkIfRoomExists(room)) {
       return callback()
     }
-    return callback({ error: "This room doesn't exist." })
+    return callback({ error: "This room doesn't exist.", errorCode: 4 })
   })
 
   socket.on('disconnect', reason => {

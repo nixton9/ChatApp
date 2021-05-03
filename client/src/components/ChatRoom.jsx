@@ -18,7 +18,8 @@ export const ChatRoom = ({
   setUsername,
   setUsercolor,
   sendMessage,
-  connectUser
+  connectUser,
+  setUserID
 }) => {
   const {
     roomID,
@@ -28,7 +29,9 @@ export const ChatRoom = ({
     setShowSettings,
     isLoading,
     showIsDisconnected,
-    setShowIsDisconnected
+    setShowIsDisconnected,
+    connectError,
+    setConnectError
   } = useContext(ChatRoomContext)
 
   const history = useHistory()
@@ -45,21 +48,37 @@ export const ChatRoom = ({
                 {adminMessage && <Notification text={adminMessage} />}
 
                 <ScrollToBottom className="messages">
-                  {messages.map(message => (
-                    <MessageBubble
-                      key={message.id}
-                      msg={message.text}
-                      isFromOwnUser={userID === message.user.id}
-                      user={message.user}
-                      timestamp={message.timestamp}
-                      isImage={message.isImage}
-                    />
-                  ))}
+                  {messages.map(message => {
+                    console.log(userID, message.user)
+                    return (
+                      <MessageBubble
+                        key={message.id}
+                        msg={message.text}
+                        isFromOwnUser={userID === message.user.id}
+                        user={message.user}
+                        timestamp={message.timestamp}
+                        isImage={message.isImage}
+                      />
+                    )
+                  })}
                 </ScrollToBottom>
 
                 {isLoading && <LoadingSpinner />}
 
                 <MessageInput sendMessage={sendMessage} />
+
+                {connectError && (
+                  <SignupModal
+                    username={username}
+                    setUsername={setUsername}
+                    usercolor={usercolor}
+                    setUsercolor={setUsercolor}
+                    setUserID={setUserID}
+                    onSubmit={(name, color) => connectUser(false, name, color)}
+                    closeModal={() => setConnectError(false)}
+                    errorMsg={connectError}
+                  />
+                )}
 
                 {showSettings && (
                   <SignupModal
@@ -67,6 +86,7 @@ export const ChatRoom = ({
                     setUsername={setUsername}
                     usercolor={usercolor}
                     setUsercolor={setUsercolor}
+                    setUserID={setUserID}
                     onSubmit={(name, color) => connectUser(true, name, color)}
                     closeModal={() => setShowSettings(false)}
                   />
@@ -76,6 +96,7 @@ export const ChatRoom = ({
               <SignupModal
                 setUsername={setUsername}
                 setUsercolor={setUsercolor}
+                setUserID={setUserID}
                 usercolor={usercolor}
                 onSubmit={(name, color) => connectUser(false, name, color)}
               />

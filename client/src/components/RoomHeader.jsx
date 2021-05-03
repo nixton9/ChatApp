@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext, useRef } from 'react'
 import { UserAvatar } from './UserAvatar'
 import { GenericModal } from './GenericModal'
+import { Tooltip } from './Tooltip'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
-import { getUsersNamesString } from '../utils/helpers'
 import { Styled } from '../styles/ChatRoom.styles'
-import { ReactComponent as HomeIcon } from '../assets/icons/home.svg'
+import { ReactComponent as ChevronIcon } from '../assets/icons/chevron.svg'
+import { displayUsersInRoom } from '../utils/helpers'
 import { useHistory } from 'react-router-dom'
 
 export const RoomHeader = ({ username, usercolor }) => {
@@ -31,45 +32,36 @@ export const RoomHeader = ({ username, usercolor }) => {
 
   return (
     <Styled.Header>
-      <Styled.RoomTitle onClick={copyRoomUrl}>
-        Room {roomID}
-        <span>Copy URL</span>
-      </Styled.RoomTitle>
+      <Styled.TopBar>
+        <Styled.BackButton onClick={() => setShowConfirmModal(true)}>
+          <ChevronIcon />
+        </Styled.BackButton>
+
+        <Styled.RoomTitle onClick={copyRoomUrl}>
+          Room {roomID}
+          <p>Copy URL</p>
+        </Styled.RoomTitle>
+
+        <Styled.User>
+          <Tooltip alignRight text={'Settings'}>
+            <UserAvatar
+              name={username}
+              color={usercolor}
+              onClick={() => setShowSettings(true)}
+            />
+          </Tooltip>
+        </Styled.User>
+      </Styled.TopBar>
 
       {users && users.length ? (
-        <>
-          <div className="users">
-            {users.map(user => (
-              <UserAvatar
-                key={user.id}
-                name={user.name}
-                color={user.color}
-                size={'xs'}
-              />
-            ))}
-            <p className="users-list">{getUsersNamesString(users)}</p>
-          </div>
-        </>
+        <Styled.UsersInRoom>{displayUsersInRoom(users, 5)}</Styled.UsersInRoom>
       ) : (
-        <>
-          <div className="users">
+        <Styled.UsersInRoom>
+          <Tooltip text={'No users'}>
             <UserAvatar size={'xs'} />
-            <p className="users-list">No users on this room</p>
-          </div>
-        </>
+          </Tooltip>
+        </Styled.UsersInRoom>
       )}
-
-      <div onClick={() => setShowConfirmModal(true)} className="home-icon">
-        <HomeIcon />
-      </div>
-
-      <div className="user">
-        <UserAvatar
-          name={username}
-          color={usercolor}
-          onClick={() => setShowSettings(true)}
-        />
-      </div>
 
       {showConfirmModal && (
         <GenericModal

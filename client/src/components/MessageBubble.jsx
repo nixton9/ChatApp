@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { UserAvatar } from './UserAvatar'
+import { Tooltip } from './Tooltip'
 import { Lightbox } from './Lightbox'
 import { Styled } from '../styles/MessageBubble.styles'
 import { ReactComponent as GlassIcon } from '../assets/icons/glass.svg'
+import { capitalize } from '../utils/helpers'
 
 export const MessageBubble = ({
   msg,
@@ -17,12 +19,14 @@ export const MessageBubble = ({
     <>
       <Styled.MessageContainer isFromOwnUser={isFromOwnUser}>
         {!isFromOwnUser && (
-          <UserAvatar
-            size={'sm'}
-            key={user.id}
-            name={user.name}
-            color={user.color}
-          />
+          <Tooltip text={capitalize(user.name)}>
+            <UserAvatar
+              size={'sm'}
+              key={user.id}
+              name={user.name}
+              color={user.color}
+            />
+          </Tooltip>
         )}
         <Styled.Message isFromOwnUser={isFromOwnUser}>
           {isImage ? (

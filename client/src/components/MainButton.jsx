@@ -8,7 +8,7 @@ const Button = styled.button`
   color: ${({ theme }) => theme.white};
   background: ${props => (props.ghost ? 'transparent' : props.theme.accent)};
   padding: ${({ theme }) => theme.spacingXS};
-  border-radius: ${({ theme }) => theme.roundedBorderRadius};
+  border-radius: ${({ theme }) => theme.mainBorderRadius};
   cursor: pointer;
 
   &:disabled {

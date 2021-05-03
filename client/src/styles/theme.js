@@ -13,11 +13,10 @@ export const theme = {
   fontBold: 700,
   mainBorderRadius: '10px',
   bigBorderRadius: '20px',
-  roundedBorderRadius: '25px',
   mainBoxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
   bigBoxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
   colors: {
-    yellow: '#FDD835',
+    yellow: '#F1D300',
     pink: '#E91E63',
     purple: '#9C27B0',
     indigo: '#3F51B5',
@@ -44,13 +43,13 @@ export const lightTheme = {
 
 export const darkTheme = {
   ...theme,
-  background: '#1D191C',
-  clearerBackground: '#2B272A',
+  background: '#1F262F',
+  clearerBackground: '#252C35',
   title: '#ffffff',
   text1: '#fefefe',
   text2: '#2F2F2F',
-  text3: '#757575',
-  text4: '#BDBDBD',
+  text3: '#D5D5D5',
+  text4: '#5C5C5C',
   text5: '#606060'
 }
 
@@ -82,4 +81,11 @@ export const device = {
   desktop: `(max-width: ${size.desktop})`,
   desktopL: `(max-width: ${size.desktopL})`,
   desktopXL: `(max-width: ${size.desktopXL})`
+}
+
+export const updateAccentColor = color => {
+  if (theme.colors[color]) {
+    darkTheme.accent = theme.colors[color]
+    lightTheme.accent = theme.colors[color]
+  }
 }

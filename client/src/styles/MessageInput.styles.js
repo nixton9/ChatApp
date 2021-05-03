@@ -2,12 +2,13 @@ import styled from 'styled-components/macro'
 import { device } from './theme'
 
 const TextAreaContainer = styled.div`
-  min-height: 5.3rem;
+  min-height: 6.7rem;
   position: fixed;
   bottom: ${({ theme }) => theme.spacingXS};
   right: ${({ theme }) => theme.spacingXS};
   left: ${({ theme }) => theme.spacingXS};
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.clearerBackground};
+  border: 2px solid ${({ theme }) => theme.text4};
   padding: 0.5rem;
   border-radius: ${({ theme }) => theme.bigBorderRadius};
   box-shadow: ${({ theme }) => theme.mainBoxShadow};
@@ -23,11 +24,12 @@ const TextArea = styled.textarea`
   width: 100%;
   height: 5rem;
   padding: 1.5rem 6rem 1.5rem 7rem;
-  color: ${({ theme }) => theme.clearerBackground};
+  color: ${({ theme }) => theme.white};
   resize: none;
   border: none;
   font-weight: ${({ theme }) => theme.fontSemiBold};
   line-height: 2rem;
+  background: transparent;
   border-radius: ${({ theme }) => theme.mainBorderRadius};
 
   @media ${device.mobileL} {
@@ -50,7 +52,7 @@ const TextArea = styled.textarea`
   }
 
   ::-ms-input-placeholder {
-    color: ${({ theme }) => theme.text4};
+    color: ${({ theme }) => theme.text3};
     font-weight: ${({ theme }) => theme.fontSemiBold};
   }
 `
@@ -105,6 +107,10 @@ const IconButton = styled.button`
 
   svg {
     width: 2.5rem;
+
+    * {
+      fill: ${({ theme }) => theme.white};
+    }
   }
 `
 
@@ -124,6 +130,10 @@ const ImageInputContainer = styled.div`
   svg {
     width: 3rem;
     cursor: pointer;
+
+    * {
+      fill: ${({ theme }) => theme.white};
+    }
   }
 `
 

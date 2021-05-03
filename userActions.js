@@ -8,8 +8,10 @@ const addUser = ({ id, name, color, room }) => {
     user => user.room === room && user.name === name
   )
 
-  if (!name || !room) return { error: 'Username and room are required.' }
-  if (existingUser) return { error: 'This nickname is taken. Try another one.' }
+  if (!name || !room)
+    return { error: 'Username and room are required.', errorCode: 1 }
+  if (existingUser)
+    return { error: 'This nickname is taken. Try another one.', errorCode: 2 }
 
   const user = { id, name, color, room }
   users.push(user)
@@ -19,18 +21,19 @@ const addUser = ({ id, name, color, room }) => {
 
 const updateUser = ({ id, name, color, room }) => {
   const existingUser = users.find(user => user.room === room && user.id === id)
-  if (!existingUser) return { error: 'This user does not exist.' }
+  if (!existingUser) return { error: 'This user does not exist.', errorCode: 3 }
 
   name = name.trim().toLowerCase()
   room = room.trim().toLowerCase()
 
-  if (!name || !room) return { error: 'Username and room are required.' }
+  if (!name || !room)
+    return { error: 'Username and room are required.', errorCode: 2 }
   if (
     users.find(
       user => user.room === room && user.name === name && user.id !== id
     )
   ) {
-    return { error: 'This nickname is taken. Try another one.' }
+    return { error: 'This nickname is taken. Try another one.', errorCode: 2 }
   }
 
   const user = { id, name, color, room }

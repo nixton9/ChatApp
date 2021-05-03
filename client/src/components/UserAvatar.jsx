@@ -1,40 +1,38 @@
 import React from 'react'
-import { theme } from '../styles/theme'
-import { capitalize } from '../utils/helpers'
+import { theme, darkTheme } from '../styles/theme'
 import styled from 'styled-components/macro'
 
 const Avatar = styled.div`
-  width: ${props =>
-    props.size === 'xs' ? '2.6rem' : props.size === 'sm' ? '3rem' : '4rem'};
-  height: ${props =>
-    props.size === 'xs' ? '2.6rem' : props.size === 'sm' ? '3rem' : '4rem'};
+  width: ${props => (props.size === 'xs' ? '3rem' : '3.3rem')};
+  height: ${props => (props.size === 'xs' ? '3rem' : '3.3rem')};
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${props => props.color};
-  border: ${props =>
-      props.size === 'xs' || props.size === 'sm' ? '2px' : '3px'}
-    solid ${({ theme }) => theme.background};
+  background-color: ${props => props.bgColor};
+  border: 3px solid ${({ theme }) => theme.background};
 `
 
 const AvatarText = styled.h6`
-  color: ${({ theme }) => theme.white};
+  color: ${props => props.color};
   font-size: ${props =>
-    props.size === 'xs' ? '1.3rem' : props.size === 'sm' ? '1.6rem' : '1.9rem'};
+    props.isLabel ? '1.1rem' : props.size === 'xs' ? '1.3rem' : '1.5rem'};
   font-weight: ${({ theme }) => theme.fontSemiBold};
 `
 
-export const UserAvatar = ({ name, color, size = 'md', onClick }) => (
+export const UserAvatar = ({ name, label, color, size = 'sm', onClick }) => (
   <Avatar
-    color={theme.colors[color] || theme.accent}
+    bgColor={theme.colors[color] || darkTheme.clearerBackground}
     className="avatar"
-    title={capitalize(name)}
     size={size}
     onClick={onClick}
   >
-    <AvatarText size={size}>
-      {name ? name.substr(0, 1).toUpperCase() : '?'}
+    <AvatarText
+      size={size}
+      color={color ? theme.white : darkTheme.text5}
+      isLabel={!!label}
+    >
+      {name ? name.substr(0, 1).toUpperCase() : label || '?'}
     </AvatarText>
   </Avatar>
 )

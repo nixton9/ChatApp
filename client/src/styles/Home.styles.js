@@ -17,6 +17,10 @@ export const Content = styled.div`
 
   svg {
     width: 30rem;
+
+    .logo-icon {
+      fill: ${({ theme }) => theme.accent};
+    }
   }
 
   .buttons {
@@ -66,7 +70,7 @@ export const InputContainer = styled.form`
     color: ${({ theme }) => theme.background};
     padding: ${({ theme }) => theme.spacingXS};
     text-align: center;
-    border-radius: ${({ theme }) => theme.roundedBorderRadius};
+    border-radius: ${({ theme }) => theme.mainBorderRadius};
 
     ::placeholder {
       color: ${({ theme }) => theme.background};

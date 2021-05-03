@@ -1,16 +1,8 @@
+import { UserAvatar } from '../components/UserAvatar'
+import { Tooltip } from '../components/Tooltip'
+
 export const capitalize = name =>
   name ? name.replace(/(^|\s)\S/g, l => l.toUpperCase()) : ''
-
-export const getUsersNamesString = users => {
-  const usersNames = users.map(user => capitalize(user.name))
-  if (users.length < 2) {
-    return usersNames.join('')
-  } else if (users.length <= 5) {
-    const lastName = usersNames.pop()
-    return `${usersNames.join(', ')} and ${lastName}`
-  }
-  return `${usersNames.splice(0, 5).join(', ')} and ${users.length - 5} more`
-}
 
 export const getCurrentHour = () => {
   const today = new Date()
@@ -31,3 +23,42 @@ export const parseFileName = file => {
 export const generateRandomString = () =>
   Math.random().toString(36).substring(2, 5) +
   Math.random().toString(36).substring(2, 5)
+
+export const displayUsersInRoom = (users, max) => {
+  const firstUsers = users
+    .slice()
+    .splice(0, max)
+    .map(user => (
+      <>
+        <Tooltip text={capitalize(user.name)}>
+          <UserAvatar
+            key={user.id}
+            name={user.name}
+            color={user.color}
+            size={'xs'}
+          />
+        </Tooltip>
+      </>
+    ))
+
+  if (users.length > max) {
+    const remainingUsersNum = users.length - max
+    return (
+      <>
+        {firstUsers}
+        <Tooltip text={getUsersNamesString(users.splice(max))}>
+          <UserAvatar
+            key={`+${remainingUsersNum}`}
+            label={`+${remainingUsersNum}`}
+          />
+        </Tooltip>
+      </>
+    )
+  }
+  return firstUsers
+}
+
+export const getUsersNamesString = users => {
+  const usersNames = users.map(user => capitalize(user.name))
+  return usersNames.join(', ')
+}

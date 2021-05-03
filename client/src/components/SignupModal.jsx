@@ -11,8 +11,10 @@ export const SignupModal = ({
   usercolor,
   setUsername,
   setUsercolor,
+  setUserID,
   onSubmit,
-  closeModal
+  closeModal,
+  errorMsg
 }) => {
   const [name, setName] = useState('')
   const [color, setColor] = useState('')
@@ -26,6 +28,7 @@ export const SignupModal = ({
       onSubmit(name, color)
         .then(res => {
           setIsLoading(false)
+          setUserID(res.id)
           setUsername(name)
           setUsercolor(color)
 
@@ -34,7 +37,7 @@ export const SignupModal = ({
           }
         })
         .catch(error => {
-          setError(error.err)
+          setError(error.error)
           setName(username || '')
           setIsLoading(false)
         })
@@ -52,6 +55,12 @@ export const SignupModal = ({
       setColor(usercolor)
     }
   }, [usercolor])
+
+  useEffect(() => {
+    if (errorMsg) {
+      setError(errorMsg)
+    }
+  }, [errorMsg])
 
   useEffect(() => {
     if (error) {

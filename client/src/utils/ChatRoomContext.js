@@ -8,6 +8,7 @@ export const ChatRoomProvider = ({ children }) => {
   const [users, setUsers] = useState([])
   const [adminMessage, setAdminMessage] = useState('')
   const [showSettings, setShowSettings] = useState(false)
+  const [connectError, setConnectError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [showIsDisconnected, setShowIsDisconnected] = useState(false)
 
@@ -22,6 +23,8 @@ export const ChatRoomProvider = ({ children }) => {
     setAdminMessage,
     showSettings,
     setShowSettings,
+    connectError,
+    setConnectError,
     isLoading,
     setIsLoading,
     showIsDisconnected,

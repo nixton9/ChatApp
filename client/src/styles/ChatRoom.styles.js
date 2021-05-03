@@ -11,46 +11,7 @@ const Wrapper = styled.div`
 `
 
 const Header = styled.header`
-  padding: ${({ theme }) => theme.spacingS};
-
-  .users {
-    display: flex;
-    align-items: center;
-    margin-top: ${({ theme }) => theme.spacingXS};
-
-    .avatar:not(:first-child) {
-      margin-left: -7px;
-    }
-  }
-
-  .users-list {
-    color: ${({ theme }) => theme.text1};
-    font-size: 1rem;
-    font-weight: ${({ theme }) => theme.fontMedium};
-    margin: 0.5rem 0 0 0.5rem;
-  }
-
-  .user {
-    position: absolute;
-    top: 2.5rem;
-    right: 3rem;
-
-    .avatar {
-      cursor: pointer;
-    }
-  }
-
-  .home-icon {
-    position: absolute;
-    top: 2.5rem;
-    right: 8rem;
-    padding: 1rem;
-    cursor: pointer;
-
-    svg {
-      width: 2rem;
-    }
-  }
+  padding: ${({ theme }) => theme.spacingS} ${({ theme }) => theme.spacingXS};
 
   textarea {
     position: absolute;
@@ -60,23 +21,63 @@ const Header = styled.header`
   }
 `
 
+const TopBar = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: ${({ theme }) => theme.spacingXS};
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const BackButton = styled.div`
+  cursor: pointer;
+
+  svg {
+    width: 1rem;
+  }
+`
+
 const RoomTitle = styled.h2`
-  font-size: 2.4rem;
+  position: relative;
+  font-size: 1.6rem;
   font-weight: ${({ theme }) => theme.fontBold};
   color: ${({ theme }) => theme.title};
   display: inline-block;
   cursor: pointer;
 
-  span {
+  p {
+    position: absolute;
+    top: 2.5rem;
+    left: 0;
+    right: 0;
+    text-align: center;
     font-size: 1rem;
     font-weight: ${({ theme }) => theme.fontMedium};
-    margin-left: ${({ theme }) => theme.spacingXS};
     opacity: 0;
     transition: opacity 0.1s ease;
   }
 
-  &:hover span {
+  &:hover p {
     opacity: 1;
+  }
+`
+
+const User = styled.div`
+  .avatar {
+    cursor: pointer;
+  }
+`
+
+const UsersInRoom = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 4rem;
+
+  div:not(:first-child) .avatar {
+    margin-left: -7px;
   }
 `
 
@@ -125,7 +126,11 @@ const InvalidMessage = styled.div`
 export const Styled = {
   Wrapper,
   Header,
+  TopBar,
+  BackButton,
   RoomTitle,
+  User,
+  UsersInRoom,
   Content,
   InvalidMessage
 }

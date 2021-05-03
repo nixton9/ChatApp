@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro'
+import { pop } from './animations'
 
 const MessageContainer = styled.div`
   width: 100%;
@@ -28,7 +29,9 @@ const Message = styled.div`
   border-bottom-left-radius: ${props =>
     props.isFromOwnUser ? props.theme.bigBorderRadius : 0};
   background-color: ${props =>
-    props.isFromOwnUser ? props.theme.text5 : props.theme.text2};
+    props.isFromOwnUser ? props.theme.accent : props.theme.clearerBackground};
+  transform-origin: ${props => (props.isFromOwnUser ? 'right' : 'left')};
+  animation: ${pop} 0.3s ease forwards;
 
   &:hover {
     .timestamp {

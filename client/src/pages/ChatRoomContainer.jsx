@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react'
 import { ChatRoom } from '../components/ChatRoom'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { getCurrentHour } from '../utils/helpers'
+import { updateAccentColor } from '../styles/theme'
 import { useParams } from 'react-router-dom'
 
 const ChatRoomContainer = ({
@@ -20,7 +21,8 @@ const ChatRoomContainer = ({
     adminMessage,
     setAdminMessage,
     setIsLoading,
-    setShowIsDisconnected
+    setShowIsDisconnected,
+    setConnectError
   } = useContext(ChatRoomContext)
 
   const { id } = useParams()
@@ -39,9 +41,10 @@ const ChatRoomContainer = ({
     return new Promise((resolve, reject) => {
       socket.emit(type, { name: name, color: color, room: id }, res => {
         if (res.error) {
-          reject({ err: res.error })
+          reject(res)
         } else {
           resolve({ id: res.id })
+          updateAccentColor(color)
         }
       })
     })
@@ -52,7 +55,17 @@ const ChatRoomContainer = ({
       setRoomID(id)
     }
     if (socket && username && id) {
-      connectUser(false, username, usercolor).then(res => setUserID(res.id))
+      connectUser(false, username, usercolor)
+        .then(res => {
+          setUserID(res.id)
+          setConnectError(null)
+        })
+        .catch(err => {
+          console.log(err)
+          if (err.errorCode && err.errorCode === 2) {
+            setConnectError(err.error)
+          }
+        })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, socket])
@@ -105,6 +118,7 @@ const ChatRoomContainer = ({
       setUsercolor={setUsercolor}
       sendMessage={sendMessage}
       connectUser={connectUser}
+      setUserID={setUserID}
     />
   )
 }
