@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { SideBar } from './SideBar'
 import { RoomHeader } from './RoomHeader'
 import { SignupModal } from './SignupModal'
 import { MessageInput } from './MessageInput'
@@ -31,26 +32,33 @@ export const ChatRoom = ({
     showIsDisconnected,
     setShowIsDisconnected,
     connectError,
-    setConnectError
+    setConnectError,
+    showUsersBar,
+    setShowUsersBar
   } = useContext(ChatRoomContext)
 
   const history = useHistory()
 
   return (
     <Styled.Wrapper>
-      {roomID && roomID.length === 6 ? (
-        <>
-          <RoomHeader username={username} usercolor={usercolor} />
+      <SideBar
+        userID={userID}
+        isOpen={showUsersBar}
+        setIsOpen={setShowUsersBar}
+      />
 
-          <Styled.Content>
-            {username ? (
-              <>
-                {adminMessage && <Notification text={adminMessage} />}
+      <Styled.Container>
+        {roomID && roomID.length === 6 ? (
+          <>
+            <RoomHeader username={username} usercolor={usercolor} />
 
-                <ScrollToBottom className="messages">
-                  {messages.map(message => {
-                    console.log(userID, message.user)
-                    return (
+            <Styled.Content>
+              {username ? (
+                <>
+                  {adminMessage && <Notification text={adminMessage} />}
+
+                  <ScrollToBottom className="messages">
+                    {messages.map(message => (
                       <MessageBubble
                         key={message.id}
                         msg={message.text}
@@ -59,76 +67,78 @@ export const ChatRoom = ({
                         timestamp={message.timestamp}
                         isImage={message.isImage}
                       />
-                    )
-                  })}
-                </ScrollToBottom>
+                    ))}
+                  </ScrollToBottom>
 
-                {isLoading && <LoadingSpinner />}
+                  {isLoading && <LoadingSpinner />}
 
-                <MessageInput sendMessage={sendMessage} />
+                  <MessageInput sendMessage={sendMessage} />
 
-                {connectError && (
-                  <SignupModal
-                    username={username}
-                    setUsername={setUsername}
-                    usercolor={usercolor}
-                    setUsercolor={setUsercolor}
-                    setUserID={setUserID}
-                    onSubmit={(name, color) => connectUser(false, name, color)}
-                    closeModal={() => setConnectError(false)}
-                    errorMsg={connectError}
-                  />
-                )}
+                  {connectError && (
+                    <SignupModal
+                      username={username}
+                      setUsername={setUsername}
+                      usercolor={usercolor}
+                      setUsercolor={setUsercolor}
+                      setUserID={setUserID}
+                      onSubmit={(name, color) =>
+                        connectUser(false, name, color)
+                      }
+                      closeModal={() => setConnectError(false)}
+                      errorMsg={connectError}
+                    />
+                  )}
 
-                {showSettings && (
-                  <SignupModal
-                    username={username}
-                    setUsername={setUsername}
-                    usercolor={usercolor}
-                    setUsercolor={setUsercolor}
-                    setUserID={setUserID}
-                    onSubmit={(name, color) => connectUser(true, name, color)}
-                    closeModal={() => setShowSettings(false)}
-                  />
-                )}
-              </>
-            ) : (
-              <SignupModal
-                setUsername={setUsername}
-                setUsercolor={setUsercolor}
-                setUserID={setUserID}
-                usercolor={usercolor}
-                onSubmit={(name, color) => connectUser(false, name, color)}
-              />
+                  {showSettings && (
+                    <SignupModal
+                      username={username}
+                      setUsername={setUsername}
+                      usercolor={usercolor}
+                      setUsercolor={setUsercolor}
+                      setUserID={setUserID}
+                      onSubmit={(name, color) => connectUser(true, name, color)}
+                      closeModal={() => setShowSettings(false)}
+                    />
+                  )}
+                </>
+              ) : (
+                <SignupModal
+                  setUsername={setUsername}
+                  setUsercolor={setUsercolor}
+                  setUserID={setUserID}
+                  usercolor={usercolor}
+                  onSubmit={(name, color) => connectUser(false, name, color)}
+                />
+              )}
+            </Styled.Content>
+
+            {showIsDisconnected && (
+              <GenericModal
+                title="Connection lost"
+                closeModal={() => setShowIsDisconnected(false)}
+                buttons={[
+                  {
+                    text: 'Reload',
+                    onClick: () => history.go(0),
+                    props: { small: true }
+                  }
+                ]}
+              >
+                Seems like you're disconnected from the server so all the chat
+                functionalities won't work. Reload the page on the button below.
+              </GenericModal>
             )}
-          </Styled.Content>
-
-          {showIsDisconnected && (
-            <GenericModal
-              title="Connection lost"
-              closeModal={() => setShowIsDisconnected(false)}
-              buttons={[
-                {
-                  text: 'Reload',
-                  onClick: () => history.go(0),
-                  props: { small: true }
-                }
-              ]}
-            >
-              Seems like you're disconnected from the server so all the chat
-              functionalities won't work. Reload the page on the button below.
-            </GenericModal>
-          )}
-        </>
-      ) : (
-        <Styled.InvalidMessage>
-          <h2>Got lost?</h2>
-          <p>
-            This is not a valid room. Click <Link to="/">here</Link> to be
-            redirect to the Home page.
-          </p>
-        </Styled.InvalidMessage>
-      )}
+          </>
+        ) : (
+          <Styled.InvalidMessage>
+            <h2>Got lost?</h2>
+            <p>
+              This is not a valid room. Click <Link to="/">here</Link> to be
+              redirect to the Home page.
+            </p>
+          </Styled.InvalidMessage>
+        )}
+      </Styled.Container>
     </Styled.Wrapper>
   )
 }

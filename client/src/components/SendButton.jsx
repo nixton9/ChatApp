@@ -13,9 +13,15 @@ const Button = styled.button`
   border-radius: ${({ theme }) => theme.mainBorderRadius};
   cursor: pointer;
   animation: ${fadeIn} 0.3s ease forwards;
+  transform-origin: center;
+  transition: transform 0.25s ease;
 
   svg {
     width: 2.5rem;
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.7);
   }
 `
 

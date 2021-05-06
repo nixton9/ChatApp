@@ -1,13 +1,24 @@
 import styled from 'styled-components/macro'
+import { device } from './theme'
 
 const Wrapper = styled.div`
+  width: 100vw;
+  display: flex;
+`
+
+const Container = styled.div`
   position: relative;
   display: grid;
   grid-template-rows: auto minmax(100px, 1fr);
-  width: 100vw;
+  width: 70%;
   height: 100vh;
   overflow: hidden;
   padding-bottom: ${({ theme }) => theme.spacingL};
+  transform: translateZ(0);
+
+  @media ${device.tablet} {
+    width: 100%;
+  }
 `
 
 const Header = styled.header`
@@ -33,7 +44,12 @@ const TopBar = styled.div`
 `
 
 const BackButton = styled.div`
+  position: relative;
   cursor: pointer;
+
+  &:after {
+    width: 300% !important;
+  }
 
   svg {
     width: 1rem;
@@ -66,18 +82,40 @@ const RoomTitle = styled.h2`
 `
 
 const User = styled.div`
+  position: relative;
+
+  .users-tooltip {
+    position: absolute;
+    top: 50%;
+    right: 5.5rem;
+    padding: 0.5rem;
+    transform: translateY(-45%);
+  }
+
   .avatar {
     cursor: pointer;
+    transition: filter 0.3s ease;
+
+    &:hover {
+      filter: contrast(1.5);
+    }
   }
 `
 
-const UsersInRoom = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 4rem;
+const UsersButton = styled.div`
+  cursor: pointer;
+  display: none;
 
-  div:not(:first-child) .avatar {
-    margin-left: -7px;
+  svg {
+    width: 2.7rem;
+
+    path {
+      stroke-width: 2px;
+    }
+  }
+
+  @media ${device.tablet} {
+    display: block;
   }
 `
 
@@ -85,6 +123,7 @@ const Content = styled.div`
   position: relative;
   width: 100%;
   padding: 0 0.5rem;
+  margin-top: ${({ theme }) => theme.spacingS};
 
   .loading-spinner {
     position: absolute;
@@ -125,12 +164,13 @@ const InvalidMessage = styled.div`
 
 export const Styled = {
   Wrapper,
+  Container,
   Header,
   TopBar,
   BackButton,
   RoomTitle,
+  UsersButton,
   User,
-  UsersInRoom,
   Content,
   InvalidMessage
 }

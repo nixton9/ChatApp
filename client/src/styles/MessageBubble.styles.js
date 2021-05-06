@@ -29,7 +29,7 @@ const Message = styled.div`
   border-bottom-left-radius: ${props =>
     props.isFromOwnUser ? props.theme.bigBorderRadius : 0};
   background-color: ${props =>
-    props.isFromOwnUser ? props.theme.accent : props.theme.clearerBackground};
+    props.isFromOwnUser ? props.theme.accent : props.theme.lightBackground};
   transform-origin: ${props => (props.isFromOwnUser ? 'right' : 'left')};
   animation: ${pop} 0.3s ease forwards;
 
@@ -88,7 +88,7 @@ const ImageWrapper = styled.div`
 `
 
 const TimeStamp = styled.span`
-  color: ${({ theme }) => theme.text1};
+  color: ${({ theme }) => theme.text6};
   position: absolute;
   bottom: -2.5rem;
   right: ${props => (props.isFromOwnUser ? 0 : 'unset')};

@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import { device } from './theme'
+import { fadeIn } from './animations'
 
 export const GlobalStyle = createGlobalStyle`
     * {
@@ -47,6 +48,30 @@ export const GlobalStyle = createGlobalStyle`
         font-family: ${({ theme }) => theme.fontFamily};
     }
 
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .mbl-click:hover:after,.mbl-click:active:after {
+        content: '';
+        width: 150%;
+        height: 150%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: ${({ theme }) => theme.background};
+        border-radius: ${({ theme }) => theme.mainBorderRadius};
+        animation: ${fadeIn} .4s ease forwards;
+        z-index: -1;
+    }
+
+    .mbl-click-inv:hover:after, .mbl-click-inv:active:after {
+        background-color: ${({ theme }) => theme.lightBackground};
+    }
+
     .expand-clickable-area {
         position: relative;
 
@@ -86,7 +111,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     ::-webkit-scrollbar-thumb {
-        background: ${({ theme }) => theme.clearerBackground};
+        background: ${({ theme }) => theme.lightBackground};
         border-radius: 8px;
     }
 

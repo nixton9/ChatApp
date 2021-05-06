@@ -21,7 +21,7 @@ const ModalContainer = styled.div`
   right: 0;
   margin: 0 auto;
   transform: translateY(-50%);
-  background: ${({ theme }) => theme.clearerBackground};
+  background: ${({ theme }) => theme.lightBackground};
   padding: ${({ theme }) => theme.spacingS};
   border-radius: ${({ theme }) => theme.mainBorderRadius};
   box-shadow: ${({ theme }) => theme.bigBoxShadow};

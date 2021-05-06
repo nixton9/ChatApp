@@ -47,6 +47,7 @@ export const MessageInput = ({ sendMessage }) => {
         <Styled.IconButton
           type="button"
           onClick={() => setShowEmojiPicker(true)}
+          className="mbl-click"
         >
           <EmojiIcon />
         </Styled.IconButton>
@@ -73,7 +74,7 @@ export const MessageInput = ({ sendMessage }) => {
         {message || selectedFile ? (
           <SendButton />
         ) : (
-          <Styled.ImageInputContainer>
+          <Styled.ImageInputContainer className="mbl-click">
             <label>
               <CameraIcon />
               <input

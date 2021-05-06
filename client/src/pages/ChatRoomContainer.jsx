@@ -102,7 +102,7 @@ const ChatRoomContainer = ({
       document.documentElement.clientHeight || 0,
       window.innerHeight || 0
     )
-    const gap = 260
+    const gap = 190
 
     if (messagesDiv) {
       messagesDiv.style.height = `${vh - messagesDiv.offsetTop - gap}px`

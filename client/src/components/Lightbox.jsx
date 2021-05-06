@@ -1,4 +1,5 @@
 import React from 'react'
+import { CloseButton } from './CloseButton'
 import styled from 'styled-components/macro'
 import { fadeIn } from '../styles/animations'
 
@@ -31,36 +32,12 @@ const LightboxContainer = styled.div`
   }
 `
 
-const LightboxClose = styled.div`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 3.5rem;
-  height: 3.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(96, 96, 96, 0.4);
-  border-radius: 50%;
-  transform: rotate(45deg);
-  cursor: pointer;
-
-  span {
-    color: ${({ theme }) => theme.white};
-    font-size: 2.7rem;
-    font-weight: ${({ theme }) => theme.fontSemiBold};
-    transform: translate(0px, -3px);
-  }
-`
-
 export const Lightbox = ({ image, closeLightbox }) => {
   return (
     <>
       <LightboxOverlay onClick={closeLightbox} />
       <LightboxContainer>
-        <LightboxClose onClick={closeLightbox}>
-          <span>+</span>
-        </LightboxClose>
+        <CloseButton onClick={closeLightbox} transparency />
         <img src={image} alt={'Sent on chat'} />
       </LightboxContainer>
     </>

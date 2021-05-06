@@ -7,7 +7,7 @@ const TextAreaContainer = styled.div`
   bottom: ${({ theme }) => theme.spacingXS};
   right: ${({ theme }) => theme.spacingXS};
   left: ${({ theme }) => theme.spacingXS};
-  background: ${({ theme }) => theme.clearerBackground};
+  background: ${({ theme }) => theme.lightBackground};
   border: 2px solid ${({ theme }) => theme.text4};
   padding: 0.5rem;
   border-radius: ${({ theme }) => theme.bigBorderRadius};
@@ -109,6 +109,13 @@ const IconButton = styled.button`
     width: 2.5rem;
 
     * {
+      fill: ${({ theme }) => theme.text6};
+      transition: fill 0.3s ease;
+    }
+  }
+
+  &:hover {
+    svg * {
       fill: ${({ theme }) => theme.white};
     }
   }
@@ -132,6 +139,13 @@ const ImageInputContainer = styled.div`
     cursor: pointer;
 
     * {
+      fill: ${({ theme }) => theme.text6};
+      transition: fill 0.3s ease;
+    }
+  }
+
+  &:hover {
+    svg * {
       fill: ${({ theme }) => theme.white};
     }
   }

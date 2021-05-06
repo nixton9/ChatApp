@@ -11,6 +11,7 @@ export const ChatRoomProvider = ({ children }) => {
   const [connectError, setConnectError] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [showIsDisconnected, setShowIsDisconnected] = useState(false)
+  const [showUsersBar, setShowUsersBar] = useState(false)
 
   const contextProps = {
     roomID,
@@ -28,7 +29,9 @@ export const ChatRoomProvider = ({ children }) => {
     isLoading,
     setIsLoading,
     showIsDisconnected,
-    setShowIsDisconnected
+    setShowIsDisconnected,
+    showUsersBar,
+    setShowUsersBar
   }
 
   return (

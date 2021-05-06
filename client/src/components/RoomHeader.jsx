@@ -5,15 +5,18 @@ import { Tooltip } from './Tooltip'
 import { ChatRoomContext } from '../utils/ChatRoomContext'
 import { Styled } from '../styles/ChatRoom.styles'
 import { ReactComponent as ChevronIcon } from '../assets/icons/chevron.svg'
-import { displayUsersInRoom } from '../utils/helpers'
+import { ReactComponent as UsersIcon } from '../assets/icons/users.svg'
 import { useHistory } from 'react-router-dom'
 
 export const RoomHeader = ({ username, usercolor }) => {
   const [roomURL, setRoomURL] = useState('')
   const [showConfirmModal, setShowConfirmModal] = useState(false)
-  const { roomID, users, setShowSettings, setAdminMessage } = useContext(
-    ChatRoomContext
-  )
+  const {
+    roomID,
+    setShowSettings,
+    setAdminMessage,
+    setShowUsersBar
+  } = useContext(ChatRoomContext)
   const textAreaRef = useRef(null)
   const history = useHistory()
 
@@ -33,7 +36,10 @@ export const RoomHeader = ({ username, usercolor }) => {
   return (
     <Styled.Header>
       <Styled.TopBar>
-        <Styled.BackButton onClick={() => setShowConfirmModal(true)}>
+        <Styled.BackButton
+          onClick={() => setShowConfirmModal(true)}
+          className="mbl-click mbl-click-inv"
+        >
           <ChevronIcon />
         </Styled.BackButton>
 
@@ -43,6 +49,15 @@ export const RoomHeader = ({ username, usercolor }) => {
         </Styled.RoomTitle>
 
         <Styled.User>
+          <Tooltip text={'Online Users'} alignRight className="users-tooltip">
+            <Styled.UsersButton
+              onClick={() => setShowUsersBar(true)}
+              className="mbl-click mbl-click-inv"
+            >
+              <UsersIcon />
+            </Styled.UsersButton>
+          </Tooltip>
+
           <Tooltip alignRight text={'Settings'}>
             <UserAvatar
               name={username}
@@ -52,16 +67,6 @@ export const RoomHeader = ({ username, usercolor }) => {
           </Tooltip>
         </Styled.User>
       </Styled.TopBar>
-
-      {users && users.length ? (
-        <Styled.UsersInRoom>{displayUsersInRoom(users, 5)}</Styled.UsersInRoom>
-      ) : (
-        <Styled.UsersInRoom>
-          <Tooltip text={'No users'}>
-            <UserAvatar size={'xs'} />
-          </Tooltip>
-        </Styled.UsersInRoom>
-      )}
 
       {showConfirmModal && (
         <GenericModal

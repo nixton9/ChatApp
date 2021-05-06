@@ -9,8 +9,8 @@ const Avatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   background-color: ${props => props.bgColor};
-  border: 3px solid ${({ theme }) => theme.background};
 `
 
 const AvatarText = styled.h6`
@@ -22,7 +22,7 @@ const AvatarText = styled.h6`
 
 export const UserAvatar = ({ name, label, color, size = 'sm', onClick }) => (
   <Avatar
-    bgColor={theme.colors[color] || darkTheme.clearerBackground}
+    bgColor={theme.colors[color] || darkTheme.lightBackground}
     className="avatar"
     size={size}
     onClick={onClick}

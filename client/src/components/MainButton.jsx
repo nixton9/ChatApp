@@ -10,9 +10,17 @@ const Button = styled.button`
   padding: ${({ theme }) => theme.spacingXS};
   border-radius: ${({ theme }) => theme.mainBorderRadius};
   cursor: pointer;
+  transition: all 0.3s ease;
 
   &:disabled {
     cursor: unset;
+  }
+
+  &:hover,
+  &:active {
+    background: ${props =>
+      props.ghost ? props.theme.background : props.theme.accent};
+    filter: ${props => (props.ghost ? 'contrast(1)' : 'contrast(1.5)')};
   }
 `
 

@@ -16,41 +16,41 @@ export const theme = {
   mainBoxShadow: '0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
   bigBoxShadow: '0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22)',
   colors: {
-    yellow: '#F1D300',
-    pink: '#E91E63',
-    purple: '#9C27B0',
-    indigo: '#3F51B5',
-    blue: '#2196F3',
-    blueGrey: '#607D8B',
-    red: '#F44336',
-    cyan: '#00BCD4',
-    teal: '#009688',
-    orange: '#FF9800'
+    yellow: '#DAB10B',
+    purple: '#3D2CDE',
+    blue: '#338BF2',
+    pink: '#C560CE',
+    green: '#54C7BA',
+    brown: '#BAA294',
+    orange: '#E68F18',
+    red: '#DE426C'
   }
 }
 
 export const lightTheme = {
   ...theme,
   background: '#F7F7F7',
-  clearerBackground: '#FEFEFE',
+  lightBackground: '#FEFEFE',
   title: '#212121',
   text1: '#424242',
   text2: '#616161',
   text3: '#757575',
   text4: '#BDBDBD',
-  text5: '#EEEEEE'
+  text5: '#EEEEEE',
+  text6: '#dcdcdc'
 }
 
 export const darkTheme = {
   ...theme,
   background: '#1F262F',
-  clearerBackground: '#252C35',
+  lightBackground: '#252C35',
   title: '#ffffff',
   text1: '#fefefe',
   text2: '#2F2F2F',
   text3: '#D5D5D5',
   text4: '#5C5C5C',
-  text5: '#606060'
+  text5: '#606060',
+  text6: '#c7c7c7'
 }
 
 const size = {
@@ -58,9 +58,9 @@ const size = {
   mobileS: '380px',
   mobile: '430px',
   mobileL: '550px',
-  tabletXS: '700px',
-  tablet: '1000px',
-  tabletXL: '1200px',
+  tabletS: '700px',
+  tablet: '900px',
+  tabletL: '1200px',
   laptop: '1500px',
   laptopL: '1792px',
   desktop: '1920px',

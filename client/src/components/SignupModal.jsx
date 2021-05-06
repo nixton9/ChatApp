@@ -28,10 +28,11 @@ export const SignupModal = ({
       onSubmit(name, color)
         .then(res => {
           setIsLoading(false)
-          setUserID(res.id)
           setUsername(name)
           setUsercolor(color)
-
+          if (res.id) {
+            setUserID(res.id)
+          }
           if (closeModal) {
             closeModal()
           }
