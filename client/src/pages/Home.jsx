@@ -83,6 +83,7 @@ const Home = ({ socket }) => {
                     placeholder="Enter room ID"
                     value={inputVal}
                     onChange={e => setInputVal(e.target.value)}
+                    data-test-id="room-input"
                   />
                   {inputVal && <SendButton />}
                 </div>

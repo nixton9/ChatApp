@@ -26,7 +26,7 @@ const Button = styled.button`
 `
 
 export const SendButton = () => (
-  <Button className="send-btn">
+  <Button className="send-btn" data-test-id="send-button">
     <SendIcon />
   </Button>
 )

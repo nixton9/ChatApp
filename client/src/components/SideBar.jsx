@@ -11,7 +11,7 @@ export const SideBar = ({ userID, isOpen, setIsOpen }) => {
     <>
       <Styled.Overlay open={isOpen} onClick={() => setIsOpen(false)} />
 
-      <Styled.Container open={isOpen}>
+      <Styled.Container open={isOpen} data-test-id="sidebar">
         <CloseButton onClick={() => setIsOpen(false)} />
 
         <Styled.Title>Users in Room {roomID}</Styled.Title>

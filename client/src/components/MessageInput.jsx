@@ -69,6 +69,7 @@ export const MessageInput = ({ sendMessage }) => {
             onChange={e => setMessage(e.target.value)}
             onKeyPress={handleTextAreaSubmit}
             placeholder="Write your message here"
+            data-test-id="message-input"
           />
         )}
         {message || selectedFile ? (

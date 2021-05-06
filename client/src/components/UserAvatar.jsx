@@ -26,6 +26,7 @@ export const UserAvatar = ({ name, label, color, size = 'sm', onClick }) => (
     className="avatar"
     size={size}
     onClick={onClick}
+    data-test-id="user-avatar"
   >
     <AvatarText
       size={size}

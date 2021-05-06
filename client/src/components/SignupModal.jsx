@@ -88,6 +88,7 @@ export const SignupModal = ({
               placeholder="Name that others will see"
               value={name}
               onChange={e => setName(e.target.value)}
+              data-test-id="modal-input"
             />
           </Styled.InputWrapper>
           <Styled.InputWrapper>

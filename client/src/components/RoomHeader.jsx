@@ -39,6 +39,7 @@ export const RoomHeader = ({ username, usercolor }) => {
         <Styled.BackButton
           onClick={() => setShowConfirmModal(true)}
           className="mbl-click mbl-click-inv"
+          data-test-id="back-button"
         >
           <ChevronIcon />
         </Styled.BackButton>
@@ -53,6 +54,7 @@ export const RoomHeader = ({ username, usercolor }) => {
             <Styled.UsersButton
               onClick={() => setShowUsersBar(true)}
               className="mbl-click mbl-click-inv"
+              data-test-id="users-button"
             >
               <UsersIcon />
             </Styled.UsersButton>

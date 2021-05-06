@@ -31,6 +31,7 @@ export const MainButton = ({ children, onClick, ghost, small, ...props }) => (
     ghost={ghost}
     small={small}
     {...props}
+    data-test-id="main-button"
   >
     {children}
   </Button>

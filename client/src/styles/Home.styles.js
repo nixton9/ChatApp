@@ -86,7 +86,7 @@ export const InputContainer = styled.form`
   }
 
   .send-btn {
-    padding: 0.5rem;
+    right: 0.8rem;
 
     svg {
       width: 2rem;

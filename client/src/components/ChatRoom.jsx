@@ -52,7 +52,7 @@ export const ChatRoom = ({
           <>
             <RoomHeader username={username} usercolor={usercolor} />
 
-            <Styled.Content>
+            <Styled.Content data-test-id="chartRoom-content">
               {username ? (
                 <>
                   {adminMessage && <Notification text={adminMessage} />}
