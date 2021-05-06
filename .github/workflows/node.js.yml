@@ -28,15 +28,15 @@ jobs:
           ACTIONS_STEP_DEBUG: true
 
       - name: Install backend dependencies
+        working-directory: ./
         run: npm install
 
       - name: Run backend
+        working-directory: ./
         run: node index.js
-          
-      - name: Go to client
-        run: cd client
 
       - name: Install client dependencies
+        working-directory: ./client
         run: npm install
 
       - name: Run Cypress tests
