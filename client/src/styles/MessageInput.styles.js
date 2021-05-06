@@ -34,11 +34,14 @@ const TextArea = styled.textarea`
 
   @media ${device.mobileL} {
     height: 4rem;
-    padding: 1.2rem 6rem 0 7rem;
   }
 
   @media ${device.mobileS} {
-    padding: 1.2rem 5rem 0 5.5rem;
+    padding: 1.5rem 5rem 1.5rem 5.5rem;
+  }
+
+  @media ${device.mobileXS} {
+    font-size: 1.4rem;
   }
 
   ::placeholder {

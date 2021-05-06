@@ -53,6 +53,7 @@ const ChatRoomContainer = ({
   useEffect(() => {
     if (id) {
       setRoomID(id)
+      document.title = `Room ${id}`
     }
     if (socket && username && id) {
       connectUser(false, username, usercolor)

@@ -2,6 +2,7 @@ import React from 'react'
 import { theme } from '../styles/theme'
 import { capitalize } from '../utils/helpers'
 import { fadeIn, fadeInHalf } from '../styles/animations'
+import { device } from '../styles/theme'
 import styled from 'styled-components/macro'
 
 const SelectContainer = styled.div`
@@ -49,6 +50,15 @@ const ColorItem = styled.div`
     font-size: 1.6rem;
     animation: ${fadeIn} 0.3s ease forwards;
     color: #fff;
+  }
+
+  @media ${device.mobileXS} {
+    width: 2rem;
+    height: 2rem;
+
+    &.selected:after {
+      font-size: 1.2rem;
+    }
   }
 `
 

@@ -48,6 +48,11 @@ const Container = styled.nav`
       }
     }
   }
+
+  @media ${device.mobileXS} {
+    min-width: 28rem;
+    padding: ${({ theme }) => theme.spacingM} ${({ theme }) => theme.spacingXS};
+  }
 `
 
 const Title = styled.h3`
