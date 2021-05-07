@@ -33,8 +33,11 @@ jobs:
       - name: Run backend
         run: node index.js &
         
+      - name: Go to client folder
+        run: cd client
+        
       - name: Install client dependencies
-        run: cd client && node index.js &
+        run: npm install
 
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
