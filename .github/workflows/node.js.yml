@@ -33,15 +33,13 @@ jobs:
       - name: Run backend
         run: node index.js &
         
-      - name: Go to client folder
-        run: cd client
-        
       - name: Install client dependencies
         run: npm install
-
+        working-directory: client
+        
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
-          start: npm start
+          start: npm run start-client
           wait-on: 'http://localhost:3000'
           config: baseUrl=http://localhost:3000
