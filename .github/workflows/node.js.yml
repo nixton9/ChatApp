@@ -1,0 +1,45 @@
+name: CI
+
+# Controls when the action will run.
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  cypress:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up Nodejs ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+          
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ACTIONS_RUNNER_DEBUG: true
+          ACTIONS_STEP_DEBUG: true
+
+      - name: Install backend dependencies
+        run: npm install
+
+      - name: Run backend
+        run: node index.js &
+        
+      - name: Install client dependencies
+        run: npm install
+        working-directory: client
+        
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run start-client
+          wait-on: 'http://localhost:3000'
+          config: baseUrl=http://localhost:3000
