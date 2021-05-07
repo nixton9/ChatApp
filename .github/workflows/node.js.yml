@@ -37,12 +37,10 @@ jobs:
         run: npm install
         working-directory: client
         
-      - name: Go to client folder
-        run: cd client
-        
       - name: Run Cypress tests
         uses: cypress-io/github-action@v2
         with:
+          working-directory: client
           start: cd client && npm start
           wait-on: 'http://localhost:3000'
           config: baseUrl=http://localhost:3000
