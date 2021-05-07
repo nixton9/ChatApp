@@ -10,7 +10,7 @@ const Container = styled.div`
   position: relative;
   display: grid;
   grid-template-rows: auto minmax(100px, 1fr);
-  width: 70%;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   padding-bottom: ${({ theme }) => theme.spacingL};
