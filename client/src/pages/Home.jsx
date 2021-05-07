@@ -65,7 +65,11 @@ const Home = ({ socket }) => {
 
   return (
     <Styled.Container>
-      <Styled.HelpButton onClick={() => setShowHelpModal(true)} role="button">
+      <Styled.HelpButton
+        onClick={() => setShowHelpModal(true)}
+        role="button"
+        data-test-id="help-button"
+      >
         ?
       </Styled.HelpButton>
 

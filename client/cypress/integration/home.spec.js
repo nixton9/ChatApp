@@ -10,6 +10,11 @@ describe('Home', () => {
     cy.get('[data-test-id="room-input"]')
   })
 
+  it('clicking on Help button open the modal', () => {
+    cy.get('[data-test-id="help-button"]').click()
+    cy.contains('How to use')
+  })
+
   it('entering a random room shows an error message', () => {
     cy.get('[data-test-id="room-input"]').type('asd')
     cy.get('[data-test-id="send-button"]').click()
