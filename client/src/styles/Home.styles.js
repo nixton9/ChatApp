@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 
-export const Container = styled.section`
+const Container = styled.section`
   width: 90%;
   height: 100vh;
   max-width: 120rem;
@@ -9,8 +9,7 @@ export const Container = styled.section`
   align-items: center;
   justify-content: center;
 `
-
-export const Content = styled.div`
+const Content = styled.div`
   position: relative;
   text-align: center;
   transform: translateY(-5rem);
@@ -45,7 +44,29 @@ export const Content = styled.div`
   }
 `
 
-export const Slogan = styled.p`
+const HelpButton = styled.div`
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: ${({ theme }) => theme.fontBold};
+  color: ${({ theme }) => theme.white};
+  border: 2px solid ${({ theme }) => theme.white};
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    background: ${({ theme }) => theme.lightBackground};
+  }
+`
+
+const Slogan = styled.p`
   color: ${({ theme }) => theme.text1};
   font-size: 1.8rem;
   line-height: 3rem;
@@ -55,7 +76,7 @@ export const Slogan = styled.p`
   margin-top: ${({ theme }) => theme.spacingXS};
 `
 
-export const InputContainer = styled.form`
+const InputContainer = styled.form`
   margin-top: ${({ theme }) => theme.spacingS};
 
   .wrapper {
@@ -97,6 +118,7 @@ export const InputContainer = styled.form`
 export const Styled = {
   Container,
   Content,
+  HelpButton,
   Slogan,
   InputContainer
 }

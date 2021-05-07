@@ -30,7 +30,12 @@ const CloseBtn = styled.div`
 `
 
 export const CloseButton = ({ onClick, transparency }) => (
-  <CloseBtn onClick={onClick} transparency={transparency} className="close-btn">
+  <CloseBtn
+    onClick={onClick}
+    transparency={transparency}
+    className="close-btn"
+    role="button"
+  >
     <span>+</span>
   </CloseBtn>
 )

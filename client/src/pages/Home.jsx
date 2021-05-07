@@ -3,6 +3,7 @@ import { MainButton } from '../components/MainButton'
 import { SendButton } from '../components/SendButton'
 import { ErrorMessage } from '../components/ErrorMessage'
 import { LoadingSpinner } from '../components/LoadingSpinner'
+import { GenericModal } from '../components/GenericModal'
 import { Styled } from '../styles/Home.styles'
 import { ReactComponent as Logo } from '../assets/logo.svg'
 import { generateRandomString } from '../utils/helpers'
@@ -12,6 +13,7 @@ const Home = ({ socket }) => {
   const [inputVal, setInputVal] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [showHelpModal, setShowHelpModal] = useState(false)
 
   const history = useHistory()
 
@@ -63,6 +65,10 @@ const Home = ({ socket }) => {
 
   return (
     <Styled.Container>
+      <Styled.HelpButton onClick={() => setShowHelpModal(true)} role="button">
+        ?
+      </Styled.HelpButton>
+
       <Styled.Content>
         <Logo />
 
@@ -94,6 +100,27 @@ const Home = ({ socket }) => {
 
         {error && <ErrorMessage error={error} />}
       </Styled.Content>
+
+      {showHelpModal && (
+        <GenericModal
+          title="How to use"
+          closeModal={() => setShowHelpModal(false)}
+          buttons={[
+            {
+              text: 'Close',
+              onClick: () => setShowHelpModal(false),
+              props: { small: true }
+            }
+          ]}
+        >
+          Welcome! If you want to start a chat with friends, just click on
+          'Create new room', look for the Room ID on the top of the page, and
+          give them this ID so they can enter it on this page. Alternatively,
+          you can also hover your mouse on the Room ID and a 'Copy link' button
+          will appear. Just click on it to copy and send the link to your
+          friends!
+        </GenericModal>
+      )}
     </Styled.Container>
   )
 }
